@@ -1,0 +1,6 @@
+c:\users\yuhan.wang\documents\visual studio 2017\Projects\Phoenixw\Phoenixw\bin\Phoenixw.dll.config
+c:\users\yuhan.wang\documents\visual studio 2017\Projects\Phoenixw\Phoenixw\bin\Phoenixw.dll
+c:\users\yuhan.wang\documents\visual studio 2017\Projects\Phoenixw\Phoenixw\bin\Phoenixw.pdb
+c:\users\yuhan.wang\documents\visual studio 2017\Projects\Phoenixw\Phoenixw\obj\Debug\Phoenixw.csprojResolveAssemblyReference.cache
+c:\users\yuhan.wang\documents\visual studio 2017\Projects\Phoenixw\Phoenixw\obj\Debug\Phoenixw.dll
+c:\users\yuhan.wang\documents\visual studio 2017\Projects\Phoenixw\Phoenixw\obj\Debug\Phoenixw.pdb
