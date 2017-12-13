@@ -13,7 +13,7 @@ namespace Phoenixw
     public interface IDemoRESTService
     {
         [OperationContract]
-        [WebInvoke(Method = "GET",
+        [WebInvoke(Method = "POST",
            RequestFormat = WebMessageFormat.Json,
            ResponseFormat = WebMessageFormat.Json,
            UriTemplate = "GetDemoById/Id={Id}"
