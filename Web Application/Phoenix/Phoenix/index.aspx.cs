@@ -13,5 +13,13 @@ namespace Phoenix
         {
 
         }
+
+        public enum RequestStatus
+        {
+            PENDINGREVIEW = 0,
+            APPROVED = 1  ,
+            REJECTED = 2,
+            COMPLETED = 3
+        }
     }
 }
