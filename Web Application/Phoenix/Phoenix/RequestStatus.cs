@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Phoenix
 {
-    public class RequestStatus
+    public static class RequestStatus
     {
         public enum RequestStatusDetail
         {

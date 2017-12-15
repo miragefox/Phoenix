@@ -74,6 +74,23 @@ namespace Phoenix
                 string Id;
                 Id = e.Row.Cells[0].Text;
                 e.Row.Attributes.Add("onclick", "ItemOver(this,(" + Id + "))");
+
+                if (e.Row.Cells[2].Text == "0")
+                {
+                    e.Row.Cells[2].Text = RequestStatus.RequestStatusDetail.PENDINGREVIEW.ToString();
+                }
+                else if (e.Row.Cells[2].Text == "1")
+                {
+                    e.Row.Cells[2].Text = RequestStatus.RequestStatusDetail.APPROVED.ToString();
+                }
+                else if (e.Row.Cells[2].Text == "2")
+                {
+                    e.Row.Cells[2].Text = RequestStatus.RequestStatusDetail.REJECTED.ToString();
+                }
+                else if (e.Row.Cells[2].Text == "3")
+                {
+                    e.Row.Cells[2].Text = RequestStatus.RequestStatusDetail.COMPLETED.ToString();
+                }
             }
         }
     }
