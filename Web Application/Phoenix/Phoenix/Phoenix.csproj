@@ -102,6 +102,7 @@
     <Compile Include="request.aspx.designer.cs">
       <DependentUpon>request.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Status.cs" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
