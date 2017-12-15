@@ -65,13 +65,5 @@ namespace Phoenix
                 e.Row.Attributes.Add("onclick", "ItemOver(this,(" + Id + "))");
             }
         }
-
-        public enum RequestStatus
-        {
-            PENDINGAPPROVAL = 0,
-            APPROVED = 1  ,
-            REJECTED = 2,
-            COMPLETED = 3
-        }
     }
 }
