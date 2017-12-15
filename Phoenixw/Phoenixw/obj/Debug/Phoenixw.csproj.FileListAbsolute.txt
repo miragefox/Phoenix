@@ -4,3 +4,11 @@ c:\users\yuhan.wang\documents\visual studio 2017\Projects\Phoenixw\Phoenixw\bin\
 c:\users\yuhan.wang\documents\visual studio 2017\Projects\Phoenixw\Phoenixw\obj\Debug\Phoenixw.csprojResolveAssemblyReference.cache
 c:\users\yuhan.wang\documents\visual studio 2017\Projects\Phoenixw\Phoenixw\obj\Debug\Phoenixw.dll
 c:\users\yuhan.wang\documents\visual studio 2017\Projects\Phoenixw\Phoenixw\obj\Debug\Phoenixw.pdb
+C:\Users\yuhan.wang\Source\Phoenix\Phoenixw\Phoenixw\bin\Phoenixw.dll.config
+C:\Users\yuhan.wang\Source\Phoenix\Phoenixw\Phoenixw\bin\Phoenixw.dll
+C:\Users\yuhan.wang\Source\Phoenix\Phoenixw\Phoenixw\bin\Phoenixw.pdb
+C:\Users\yuhan.wang\Source\Phoenix\Phoenixw\Phoenixw\obj\Debug\Phoenixw.csprojResolveAssemblyReference.cache
+C:\Users\yuhan.wang\Source\Phoenix\Phoenixw\Phoenixw\obj\Debug\Phoenixw.dll
+C:\Users\yuhan.wang\Source\Phoenix\Phoenixw\Phoenixw\obj\Debug\Phoenixw.pdb
+C:\Users\yuhan.wang\Source\Phoenix\Phoenixw\Phoenixw\bin\Newtonsoft.Json.dll
+C:\Users\yuhan.wang\Source\Phoenix\Phoenixw\Phoenixw\bin\Newtonsoft.Json.xml
