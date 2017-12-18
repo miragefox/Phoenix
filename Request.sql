@@ -6,7 +6,7 @@ CREATE DATABASE Phoenix
 USE [Phoenix]
 GO
 CREATE TABLE [dbo].[Request](
-	[RequestId] [varchar] (50) NOT NULL,
+	[RequestId] [varchar] (40) NOT NULL,
 	[RequestTitle] [nvarchar](400) NOT NULL,
 	[RequestDetail] [nvarchar](600) NOT NULL,
 	[Comments] [nvarchar](400) NULL,
