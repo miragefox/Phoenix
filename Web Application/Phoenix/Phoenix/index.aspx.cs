@@ -73,7 +73,7 @@ namespace Phoenix
             {
                 string Id;
                 Id = e.Row.Cells[0].Text;
-                e.Row.Attributes.Add("onclick", "ItemOver(this,(" + Id + "))");
+                e.Row.Attributes.Add("onclick", "ItemOver(this,'" + Id + "')");
 
                 if (e.Row.Cells[2].Text == "0")
                 {
