@@ -11,6 +11,7 @@ namespace Phoenix
         {
             var requestid = Guid.NewGuid().ToString();
             RequestId.Text = requestid;
+            RequestId.Enabled = false;
         }
 
         private readonly SqlConnection _sqlConnection = new SqlConnection(@"server=.\SQL2014;database=Phoenix;integrated security=sspi");
