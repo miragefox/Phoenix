@@ -28,8 +28,8 @@ namespace Phoenix
 
             var requestId = Request.QueryString["Id"];
 
-            if (txt_Comments.Text == "")
-            {
+            if (!IsPostBack)
+            {            
                 DisplayRequest(requestId);
             }
 
@@ -40,7 +40,7 @@ namespace Phoenix
             var request = new RequestList();
             request = GetRequestList(requestId);
 
-            txt_requestId.Text = requestId.ToString();
+            txt_requestId.Text = requestId;
             txt_Title.Text = request.RequestTitle;
             txt_Details.Text = request.RequestDetail;
             txt_Comments.Text = request.Comments;
