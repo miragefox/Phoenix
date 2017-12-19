@@ -32,18 +32,18 @@ namespace Phoenix
             da.SelectCommand = com;                         //执行数据库操作命令
             DataSet ds = new DataSet();                     //创建数据集对象
             da.Fill(ds, "request");                        //填充数据集
-            RequestRequestGridView1.DataSource = ds.Tables["Request"].DefaultView;//设置gridview控件的数据源为创建的数据集ds
-            RequestRequestGridView1.DataBind();                           //绑定数据库表中数据
+            RequestGridView.DataSource = ds.Tables["Request"].DefaultView;//设置gridview控件的数据源为创建的数据集ds
+            RequestGridView.DataBind();                           //绑定数据库表中数据
             if (ds.Tables[0].Rows.Count == 0)
             {
                 ds.Tables[0].Rows.Add(ds.Tables[0].NewRow());
-                RequestRequestGridView1.DataSource = ds;
-                RequestRequestGridView1.DataBind();
-                int columnCount = RequestRequestGridView1.Rows[0].Cells.Count;
-                RequestRequestGridView1.Rows[0].Cells.Clear();
-                RequestRequestGridView1.Rows[0].Cells.Add(new TableCell());
-                RequestRequestGridView1.Rows[0].Cells[0].ColumnSpan = columnCount;
-                RequestRequestGridView1.Rows[0].Cells[0].Text = "No Records Found.";
+                RequestGridView.DataSource = ds;
+                RequestGridView.DataBind();
+                int columnCount = RequestGridView.Rows[0].Cells.Count;
+                RequestGridView.Rows[0].Cells.Clear();
+                RequestGridView.Rows[0].Cells.Add(new TableCell());
+                RequestGridView.Rows[0].Cells[0].ColumnSpan = columnCount;
+                RequestGridView.Rows[0].Cells[0].Text = "No Records Found.";
             }
         }
 
