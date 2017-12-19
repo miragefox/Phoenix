@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="Phoenix.index" MasterPageFile="~/MasterPage.Master"%>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<asp:Content ID="head" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
     if (!objbeforeItem)
     {
@@ -16,7 +16,7 @@
         objbeforeItembackgroundColor = obj.style.backgroundColor;
         objbeforeItem = obj;
         obj.style.backgroundColor = "#F7CE90";
-        document.getElementById("ContentPlaceHolder1_HiddenId").value = id;
+        document.getElementById("BodyContent_HiddenId").value = id;
     }
     </script>
      <style type="text/css">
@@ -34,7 +34,7 @@
         
     </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="BodyContent" ContentPlaceHolderID="BodyContent" runat="server">
             <asp:GridView  align="center" ID="RequestRequestGridView1"  runat="server" AutoGenerateColumns="False" CellPadding="3" Height="212px" OnRowDataBound="RequestGridView1_RowDataBound" Width="610px" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"  >
                 <Columns>
                     <asp:BoundField DataField="RequestId" HeaderText="RequestId">
