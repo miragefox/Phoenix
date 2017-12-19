@@ -96,6 +96,23 @@ namespace Phoenix
             txt_Title.Text = request.RequestTitle;
             txt_Details.Text = request.RequestDetail;
             txt_Comments.Text = request.Comments;
+
+            switch(request.RequestStatus)
+            {
+                case
+                0: txt_status.Text = RequestStatus.RequestStatusDetail.PENDINGREVIEW.ToString();
+                    break;
+                case
+                1: txt_status.Text = RequestStatus.RequestStatusDetail.APPROVED.ToString();
+                    break;
+                case
+                2: txt_status.Text = RequestStatus.RequestStatusDetail.REJECTED.ToString();
+                    break;
+                case
+                3: txt_status.Text = RequestStatus.RequestStatusDetail.COMPLETED.ToString();
+                    break;
+            }
+
         }
 
         protected void btn_Close_Click(object sender, EventArgs e)
