@@ -26,8 +26,8 @@
     <header style="background-color: #1a4e7c; width: 100%;margin: 0em 0 3em 0;">
        <img alt="Banner of Accenture" src="photo/PhoenixHeader.png" style="width:200px;height:90px;" />
     </header>
-    <form id="form1" runat="server">
-        <div style="text-align:center" id="content">
+    <form id="MasterForm" runat="server">
+        <div style="text-align:center">
             <asp:ContentPlaceHolder ID="BodyContent" runat="server" >
             </asp:ContentPlaceHolder>
         </div>
