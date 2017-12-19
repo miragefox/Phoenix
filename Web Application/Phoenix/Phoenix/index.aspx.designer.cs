@@ -13,15 +13,6 @@ namespace Phoenix {
     public partial class index {
         
         /// <summary>
-        /// form1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
         /// RequestRequestGridView1 control.
         /// </summary>
         /// <remarks>
@@ -31,13 +22,13 @@ namespace Phoenix {
         protected global::System.Web.UI.WebControls.GridView RequestRequestGridView1;
         
         /// <summary>
-        /// HiddenClickId control.
+        /// HiddenId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden HiddenClickId;
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden HiddenId;
         
         /// <summary>
         /// DetailsButton control.
