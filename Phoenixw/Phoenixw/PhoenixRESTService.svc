@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Phoenixw.PhoenixRESTService" CodeBehind="PhoenixRESTService.svc.cs" %>
