@@ -49,7 +49,7 @@ namespace Phoenix
 
         protected void DetailsButton_Click(object sender, EventArgs e)
         {
-            string id = HiddenClickId.Value;
+            string id = HiddenId.Value;
             if (id.Equals(""))
             {
                 Response.Write("<script>alert('您没有选择一条记录!');</script>");
@@ -73,7 +73,7 @@ namespace Phoenix
             {
                 string Id;
                 Id = e.Row.Cells[0].Text;
-                e.Row.Attributes.Add("onclick", "ItemOver(this,(" + Id + "))");
+                e.Row.Attributes.Add("onclick", "ItemOver(this,'" + Id + "')");
 
                 if (e.Row.Cells[2].Text == "0")
                 {
