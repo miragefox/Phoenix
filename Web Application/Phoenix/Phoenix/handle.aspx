@@ -37,16 +37,16 @@
         <div class="requestDetials">
 
             <asp:label id="lbl_id" associatedcontrolid="txt_requestId" runat="server" text="RequestId: " CssClass="labels"/>
-			<asp:textbox id="txt_requestId" align="right" oninput="onInput(this)" runat="server" CssClass="rid"/>
+			<asp:textbox id="txt_requestId" align="right" runat="server" CssClass="rid" Enabled="false"/>
             <br/>
 			<asp:label id="lbl_Title" associatedcontrolid="txt_Title" runat="server" text="Title: " CssClass="labels"/>
-			<asp:textbox id="txt_Title" align="right" oninput="onInput(this)" runat="server" CssClass="title" />
+			<asp:textbox id="txt_Title" align="right" runat="server" CssClass="title" Enabled="false"/>
             <br/>
             <asp:label id="lbl_Details" associatedcontrolid="txt_Details" runat="server" text="Details: " CssClass="labels"/>
-            <asp:textbox id="txt_Details" textmode="MultiLine" align="right" oninput="onInput(this)" runat="server" CssClass="detail"/>
+            <asp:textbox id="txt_Details" textmode="MultiLine" align="right" runat="server" CssClass="detail" Enabled="false"/>
             <br/>
             <asp:label id="lbl_Comments" associatedcontrolid="txt_Comments" runat="server" text="Comments: " CssClass="labels"/>
-			<asp:textbox id="txt_Comments" textmode="MultiLine" align="right" oninput="onInput(this)" runat="server" CssClass="comment"/>			
+			<asp:textbox id="txt_Comments" textmode="MultiLine" align="right" runat="server" CssClass="comment"/>			
 		</div>
         
             <asp:button id="btn_Approval" Text="Approval" runat="server" onclick="btn_Approval_Click" CssClass="buttons"/>
