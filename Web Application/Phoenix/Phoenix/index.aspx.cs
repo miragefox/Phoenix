@@ -67,7 +67,7 @@ namespace Phoenix
             Response.Redirect("request.aspx");
         }
 
-        protected void RequestGridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void RequestGridView_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
