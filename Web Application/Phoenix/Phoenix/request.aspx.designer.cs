@@ -13,15 +13,6 @@ namespace Phoenix {
     public partial class request {
         
         /// <summary>
-        /// addnewform control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm addnewform;
-        
-        /// <summary>
         /// RequestId control.
         /// </summary>
         /// <remarks>
@@ -65,5 +56,14 @@ namespace Phoenix {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button NotifyButton;
+        
+        /// <summary>
+        /// CancelButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button CancelButton;
     }
 }

@@ -11,11 +11,10 @@ namespace Phoenix
         {
             var requestid = Guid.NewGuid().ToString();
             RequestId.Text = requestid;
-            RequestId.Enabled = false;
         }
 
         private readonly SqlConnection _sqlConnection = new SqlConnection(@"server=.\SQL2014;database=Phoenix;integrated security=sspi");
-        private const string InsertRequest = "insert into Request(RequestId,RequestTitle,RequestDetail,Comments,RequestStatus) values('{0}','{1}','{2}','',{3})";
+        private const string InsertRequest = "insert into Request(RequestId,RequestTitle,RequestDetail,Comments,RequestStatus,EditDttm) values('{0}','{1}','{2}','',{3},'{4}')";
         protected void SendForApprovalButtonClick(object sender, EventArgs e)
         {
             var requestId = RequestId.Text;
@@ -31,7 +30,7 @@ namespace Phoenix
                 _sqlConnection.Open();
 
                 var sqlBaseBuilder = new StringBuilder(InsertRequest);
-                var sqlStr = string.Format(sqlBaseBuilder.ToString(), requestId, requestTitle, requestDetails, requestStatus);
+                var sqlStr = string.Format(sqlBaseBuilder.ToString(), requestId, requestTitle, requestDetails, requestStatus, DateTime.Now);
 
                 SqlCommand myCmd = new SqlCommand(sqlStr, _sqlConnection);
                 myCmd.ExecuteNonQuery();
@@ -57,7 +56,7 @@ namespace Phoenix
                 _sqlConnection.Open();
 
                 var sqlBaseBuilder = new StringBuilder(InsertRequest);
-                var sqlStr = string.Format(sqlBaseBuilder.ToString(), requestId, requestTitle, requestDetails, requestStatus);
+                var sqlStr = string.Format(sqlBaseBuilder.ToString(), requestId, requestTitle, requestDetails, requestStatus, DateTime.Now);
 
                 SqlCommand myCmd = new SqlCommand(sqlStr, _sqlConnection);
                 myCmd.ExecuteNonQuery();
@@ -66,6 +65,11 @@ namespace Phoenix
 
                 Response.Redirect("index.aspx");
             }
+        }
+
+        protected void CancelButtonClick(object sender, EventArgs e)
+        {
+            Response.Redirect("index.aspx");
         }
     }
 }
