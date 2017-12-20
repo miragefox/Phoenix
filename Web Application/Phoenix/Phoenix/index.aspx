@@ -35,7 +35,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyContent" runat="server">
-            <asp:GridView  align="center" ID="RequestGridView"  runat="server" AutoGenerateColumns="False" Height="212px" OnRowDataBound="RequestGridView1_RowDataBound" CellPadding="4" EnableModelValidation="True" Font-Size="Small"  Width="430px" BorderColor="#1d7eb1" BorderWidth="1px" >
+            <asp:GridView  align="center" ID="RequestGridView"  runat="server" AutoGenerateColumns="False" Height="212px" OnRowDataBound="RequestGridView_RowDataBound" CellPadding="4" EnableModelValidation="True" Font-Size="Small"  Width="450px" BorderColor="#1d7eb1" BorderWidth="1px" >
                 <Columns>
                     <asp:BoundField DataField="RequestId" HeaderText="RequestId">
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -48,7 +48,7 @@
                     </asp:BoundField>
                 </Columns>
                 <FooterStyle BackColor="White" ForeColor="#000066" />
-                <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
+                <HeaderStyle BackColor="#1d7eb1" Font-Bold="False" ForeColor="white" />
                 <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
                 <RowStyle ForeColor="#000066" HorizontalAlign="Center" />
                 <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
