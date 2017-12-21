@@ -4,17 +4,30 @@
     <style>
         .form {
          width: 650px;
-         height: 40px;
+         height: 30px;
      }
-        .detailsform {
+        .formdetails {
          width: 650px;
-         height: 260px;
+         height: 220px;
      }
-    .lableformat {
-        margin-top: 5px;
-        width: 200px;
+    .lable {
+        width: 100px;
+        display:inline-block;
+        text-align:left;
+        background-color:#077ac3;
+        color:white;
+        height: 20px;
     }
-    .textboxformat {
+    .labledetails {
+        width: 100px;
+        height: 200px;
+        display:inline-block;
+        text-align:left;
+        color:white;
+        vertical-align:top;
+        background-color:#077ac3;
+    }
+    .textbox {
         width: 400px;
         height: 20px;
     }
@@ -39,15 +52,15 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyContent" runat="server">
     <div runat="server" style=" width: 650px;margin-left: 350px">   
         <div runat="server" class="form">
-           <asp:label associatedcontrolid="RequestId" text="RequestId" runat="server" CssClass="lableformat" />
-           <asp:TextBox id="RequestId" Enabled="false" runat="server" CssClass="textboxformat"/>                
+           <asp:label associatedcontrolid="RequestId" text="RequestId" runat="server" CssClass="lable" />
+           <asp:TextBox id="RequestId" Enabled="false" runat="server" CssClass="textbox"/>                
         </div>
         <div runat="server" class="form">
-            <asp:label associatedcontrolid="RequestTitle" text="RequestTitle" runat="server" CssClass="lableformat" />
-            <asp:TextBox id="RequestTitle" runat="server" CssClass="textboxformat"/>
+            <asp:label associatedcontrolid="RequestTitle" text="RequestTitle" runat="server" CssClass="lable" />
+            <asp:TextBox id="RequestTitle" runat="server" CssClass="textbox"/>
         </div>
-        <div runat="server" class="detailsform">
-            <asp:label associatedcontrolid="RequestDetails" text="RequestDetails" runat="server" CssClass="lableformat" />
+        <div runat="server" class="formdetails">
+            <asp:label associatedcontrolid="RequestDetails" text="RequestDetails" runat="server" CssClass="labledetails" />
             <asp:TextBox id="RequestDetails" textmode="MultiLine" runat="server" CssClass="textboxdetails"/>
         </div>
     </div>
