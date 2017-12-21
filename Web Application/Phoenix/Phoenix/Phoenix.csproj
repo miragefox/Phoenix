@@ -107,6 +107,7 @@
     <Compile Include="MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
+    <Compile Include="Phoenix.DBaccess.cs" />
     <Compile Include="PhoenixDataModel\PhoenixDataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="request.aspx.cs">
