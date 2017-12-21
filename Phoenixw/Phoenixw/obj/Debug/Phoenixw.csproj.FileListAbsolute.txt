@@ -12,3 +12,11 @@ C:\Users\yuhan.wang\Source\Phoenix\Phoenixw\Phoenixw\obj\Debug\Phoenixw.dll
 C:\Users\yuhan.wang\Source\Phoenix\Phoenixw\Phoenixw\obj\Debug\Phoenixw.pdb
 C:\Users\yuhan.wang\Source\Phoenix\Phoenixw\Phoenixw\bin\Newtonsoft.Json.dll
 C:\Users\yuhan.wang\Source\Phoenix\Phoenixw\Phoenixw\bin\Newtonsoft.Json.xml
+D:\Phoenix\Phoenixw\Phoenixw\bin\Phoenixw.dll.config
+D:\Phoenix\Phoenixw\Phoenixw\bin\Phoenixw.dll
+D:\Phoenix\Phoenixw\Phoenixw\bin\Phoenixw.pdb
+D:\Phoenix\Phoenixw\Phoenixw\bin\Newtonsoft.Json.dll
+D:\Phoenix\Phoenixw\Phoenixw\bin\Newtonsoft.Json.xml
+D:\Phoenix\Phoenixw\Phoenixw\obj\Debug\Phoenixw.csprojResolveAssemblyReference.cache
+D:\Phoenix\Phoenixw\Phoenixw\obj\Debug\Phoenixw.dll
+D:\Phoenix\Phoenixw\Phoenixw\obj\Debug\Phoenixw.pdb
