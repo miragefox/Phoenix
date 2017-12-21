@@ -10,42 +10,33 @@
 namespace Phoenix {
     
     
-    public partial class index {
+    public partial class MasterPage {
         
         /// <summary>
-        /// RequestGridView control.
+        /// head control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView RequestGridView;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
         
         /// <summary>
-        /// HiddenId control.
+        /// MasterForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden HiddenId;
+        protected global::System.Web.UI.HtmlControls.HtmlForm MasterForm;
         
         /// <summary>
-        /// DetailsButton control.
+        /// BodyContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button DetailsButton;
-        
-        /// <summary>
-        /// AddNewButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AddNewButton;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder BodyContent;
     }
 }

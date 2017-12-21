@@ -1,0 +1,39 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.Master.cs" Inherits="Phoenix.MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Phoenix</title>
+    <link rel="shortcut icon" href="photo/phoenixLogo.png" type="image/x-icon" />
+    <link rel="icon" href="photo/phoenixLogo.png" type="image/ico" />
+    <style type="text/css">
+        #footer
+        {
+            margin-top: 30px;
+	        font-size: 6pt;
+	        text-align: center;
+        }
+
+        #footer .copyright {
+	        white-space: nowrap;
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body style="margin-top: 0px;margin-left:0px;margin-right:0px;margin-bottom:0px;">
+    <header style="background-color: #1a4e7c; width: 100%;margin: 0em 0 3em 0;">
+       <img alt="Banner of Accenture" src="photo/PhoenixHeader.png" style="width:200px;height:90px;" />
+    </header>
+    <form id="MasterForm" runat="server">
+        <div style="text-align:center">
+            <asp:ContentPlaceHolder ID="BodyContent" runat="server" >
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+    <div id="footer">
+       <span class="copyright">&copy; <%= DateTime.UtcNow.Year %> Phoenix Team All Rights Reserved. Phoenix Team Highly Confidential. For Internal Use Only.</span>
+    </div>
+</body>
+</html>

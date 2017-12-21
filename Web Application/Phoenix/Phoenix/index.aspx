@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="Phoenix.index" MasterPageFile="~/MasterPage.Master"%>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<asp:Content ID="head" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
     if (!objbeforeItem)
     {
@@ -16,7 +16,7 @@
         objbeforeItembackgroundColor = obj.style.backgroundColor;
         objbeforeItem = obj;
         obj.style.backgroundColor = "#F7CE90";
-        document.getElementById("ContentPlaceHolder1_HiddenId").value = id;
+        document.getElementById("BodyContent_HiddenId").value = id;
     }
     </script>
      <style type="text/css">
@@ -34,8 +34,8 @@
         
     </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-            <asp:GridView  align="center" ID="RequestRequestGridView1"  runat="server" AutoGenerateColumns="False" CellPadding="3" Height="212px" OnRowDataBound="RequestGridView1_RowDataBound" Width="610px" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px"  >
+<asp:Content ID="BodyContent" ContentPlaceHolderID="BodyContent" runat="server">
+            <asp:GridView  align="center" ID="RequestGridView"  runat="server" AutoGenerateColumns="False" Height="212px" OnRowDataBound="RequestGridView_RowDataBound" CellPadding="4" EnableModelValidation="True" Font-Size="Small"  Width="450px" BorderColor="#1d7eb1" BorderWidth="1px" >
                 <Columns>
                     <asp:BoundField DataField="RequestId" HeaderText="RequestId">
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -48,7 +48,7 @@
                     </asp:BoundField>
                 </Columns>
                 <FooterStyle BackColor="White" ForeColor="#000066" />
-                <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
+                <HeaderStyle BackColor="#1d7eb1" Font-Bold="False" ForeColor="white" />
                 <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
                 <RowStyle ForeColor="#000066" HorizontalAlign="Center" />
                 <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
@@ -57,7 +57,7 @@
                 <SortedDescendingCellStyle BackColor="#CAC9C9" />
                 <SortedDescendingHeaderStyle BackColor="#00547E" />
             </asp:GridView>
-            <input type="hidden" id="HiddenId" name="HiddenId" runat="server" style="margin:0em 0 3em 0;"/>
+            <input type="hidden" id="HiddenId" name="HiddenId" runat="server"/>
             <asp:Button CssClass="IndexButton" ID="DetailsButton" runat="server" OnClick="DetailsButton_Click" Text="Details"/>
             <asp:Button CssClass="IndexButton" ID="AddNewButton" runat="server" Text="Add New" OnClick="AddNewButton_Click" />
 </asp:Content>
