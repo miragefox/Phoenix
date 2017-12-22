@@ -17,10 +17,10 @@ namespace Phoenixw
         public string RequestDetail { get; set; }
         [DataMember]
         public string Comments { get; set; }
+        [DataMember]
         public Status Status { get; set; }
-        //public DateTime UpdateTime { get; set; }
-        //public string UpdateUser { get; set; }
-
+        [DataMember]
+        public DateTime EditDttm { get; set; }
     }
     public enum Status
     {
