@@ -10,7 +10,8 @@ CREATE TABLE [dbo].[Request](
 	[RequestTitle] [nvarchar](400) NOT NULL,
 	[RequestDetail] [nvarchar](600) NOT NULL,
 	[Comments] [nvarchar](400) NULL,
-	[RequestStatus] [int] NOT NULL
+	[RequestStatus] [int] NOT NULL,
+        [EditDttm] [datetime]NOT NULL 
 PRIMARY KEY CLUSTERED 
 (
 	[RequestId]
