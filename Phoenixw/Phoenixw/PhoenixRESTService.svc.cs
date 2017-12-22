@@ -20,8 +20,10 @@ namespace Phoenixw
     public class PhoenixRESTService : IPhoenixRESTService
     {
         //连接本地数据库
-        SqlConnection sqlConnection = new SqlConnection(@"server=.\SQL2014;database=Phoenix;integrated security=sspi");
+        //SqlConnection sqlConnection = new SqlConnection(@"server=.\SQL2014;database=Phoenix;integrated security=sspi");
         
+        SqlConnection sqlConnection = new SqlConnection(@"Server=tcp:mhedb.database.chinacloudapi.cn,1433;Initial Catalog = zengguosqlservertest; Persist Security Info=False;uid=mheadmin;password=Dalian@123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout = 30;");
+
         public void InsertRequest(PhoenixRequest phoenixRequest)
         {
             WebOperationContext woc = WebOperationContext.Current;
