@@ -8,47 +8,30 @@ using System.Data;
 
 namespace Phoniex.dbaccess
 {
-    public class DBHelper
+    public static class DBHelper
     {
 
-        //数据库连接
-        //public static string SqlConnection = @"server=.\SQL2014;database=Phoenix;integrated security=sspi";
-        //公共连接对象
-        ////public static SqlConnection con;
+        //Server=tcp:mhedb.database.chinacloudapi.cn,1433;Initial Catalog = zengguosqlservertest; Persist Security Info=False;uid=mheadmin;password=Dalian@123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout = 30;
 
         private const string con = @"server=.\SQL2014;database=Phoenix;integrated security=sspi";
         private static SqlConnection connection = new SqlConnection(con);
 
 
         /// <summary>
-        /// 读取数据
-        /// </summary>
-        /// <returns></returns>
-        public static SqlDataReader Reader(string sql)
-        {
-            try
-            {
-                connection.Open();
-                SqlCommand com = new SqlCommand(sql, connection);
-                return com.ExecuteReader(CommandBehavior.CloseConnection);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        /// <summary>
         /// 增删改数据
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>
-        public static int ExecuteNonQuery(string sql)
+        public static int ExecuteNonQuery(string sql, SqlParameter[] param = null)
         {
             try
             {
                 connection.Open();   //打开数据库连接
                 SqlCommand com = new SqlCommand(sql, connection);
+                if (param != null)
+                {
+                    com.Parameters.AddRange(param);
+                }
                 return com.ExecuteNonQuery();
             }
             catch (Exception)
@@ -60,12 +43,14 @@ namespace Phoniex.dbaccess
                 connection.Close();
             }
         }
+
+
         /// <summary>
         /// 返回单个值
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>
-        public static object ExecuteScalar(string sql)
+        public static object ExecuteScalar(string sql)   
         {
             try
             {
@@ -86,30 +71,30 @@ namespace Phoniex.dbaccess
         /// <summary>
         /// 返回数据集
         /// </summary>
-        /// <param name="sql"></param>
+        /// <param name="selectCommand"></param>
         /// <param name="tableName"></param>
         /// <returns></returns>
-        public static DataSet Fill(string sql, string tableName)
+        public static DataTable GetRecords(string selectCommand, SqlParameter[] param = null)
         {
             try
             {
-                connection.Open();  //打开连接
                 //创建数据适配器对象
-                SqlDataAdapter da = new SqlDataAdapter(sql, connection);
+                SqlDataAdapter da = new SqlDataAdapter(selectCommand, connection);
+                if (param != null)
+                {
+                    da.SelectCommand.Parameters.AddRange(param);
+                }
+                
                 //创建数据集
                 DataSet ds = new DataSet();
-                da.Fill(ds, tableName); //填充数据集
-                return ds;
+                da.Fill(ds); //填充数据集
+                return ds.Tables[0];
             }
             catch (Exception)
             {
                 throw;
                 //将异常引发出现
                 //  throw new Exception(e.Message);
-            }
-            finally
-            {
-                connection.Close();
             }
         }
     }
