@@ -1,21 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using System.Configuration;
 
 namespace Phoniex.dbaccess
 {
     public static class DBHelper
     {
+        static SqlConnection connection;
+        private static SqlConnection Connection
+        {
+            get {
+                if (connection == null)
+                {
+                    connection = new SqlConnection(ConfigurationManager.ConnectionStrings["LocalConnection"].ConnectionString);
 
-        //Server=tcp:mhedb.database.chinacloudapi.cn,1433;Initial Catalog = zengguosqlservertest; Persist Security Info=False;uid=mheadmin;password=Dalian@123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout = 30;
-
-        private const string con = @"server=.\SQL2014;database=Phoenix;integrated security=sspi";
-        private static SqlConnection connection = new SqlConnection(con);
-
+                }
+                return connection;
+            }
+        }
 
         /// <summary>
         /// 增删改数据
@@ -23,7 +26,7 @@ namespace Phoniex.dbaccess
         /// <param name="sql"></param>
         /// <returns></returns>
         public static int ExecuteNonQuery(string sql, SqlParameter[] param = null)
-        {
+        {       
             try
             {
                 connection.Open();   //打开数据库连接
