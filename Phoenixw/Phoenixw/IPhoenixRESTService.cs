@@ -22,20 +22,5 @@ namespace Phoenixw
            UriTemplate = "PhoenixRequestUpdate"
          )]
         void InsertRequest(PhoenixRequest phoenixRequest);
-
-        //新增数据
-        //[OperationContract]
-        //void InsertRequestToDB(string requestId, string requestTitle, string requestDetail, string comments, Status requestStatus);
-        //删除数据
-        [OperationContract]
-        void DeleteRequestToDB(string requestId);
-        //修改数据
-        [OperationContract]
-        void UpdataRequestToDB(string requestId);
-        //查询数据
-        [OperationContract]
-        void SelectRequestToDB(string requestId);
-
-
     }
 }
