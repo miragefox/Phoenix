@@ -27,7 +27,7 @@ namespace Phoenix
             con = new SqlConnection(@"server=.\SQL2014;database=Phoenix;integrated security=sspi");
             SqlCommand com = new SqlCommand();              //定义数据库操作命令对象
             com.Connection = con;                           //连接数据库
-            com.CommandText = "select RequestId,RequestTitle,RequestStatus from Request"; //定义执行查询操作的sql语句
+            com.CommandText = "select RequestId,RequestTitle,RequestStatus from Request order by EditDttm desc"; //定义执行查询操作的sql语句
             SqlDataAdapter da = new SqlDataAdapter();       //创建数据适配器对象
             da.SelectCommand = com;                         //执行数据库操作命令
             DataSet ds = new DataSet();                     //创建数据集对象
@@ -44,7 +44,7 @@ namespace Phoenix
         protected void DetailsButton_Click(object sender, EventArgs e)
         {
             string id = HiddenId.Value;
-            if (id.Equals("") || id.Equals("&nbsp;"))
+            if (id =="" || id =="&nbsp;")
             {
                 Response.Write("<script>alert('您没有选择一条记录!');</script>");
                 getstyle();
@@ -64,33 +64,36 @@ namespace Phoenix
 
         protected void RequestGridView_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-
-                if (e.Row.RowType == DataControlRowType.Footer)
-                {
-                    getstyle();
-                }
+            if (e.Row.RowType == DataControlRowType.Footer)
+             {
+                getstyle();
+             }
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 string Id;
                 Id = e.Row.Cells[0].Text;
-                e.Row.Attributes.Add("onclick", "ItemOver(this,'" + Id + "')");
+                if (Id != "&nbsp;")
+                {
+                    e.Row.Attributes.Add("onclick", "ItemOver(this,'" + Id + "')");
 
-                if (e.Row.Cells[2].Text == "0")
-                {
-                    e.Row.Cells[2].Text = RequestStatus.RequestStatusDetail.PENDINGREVIEW.ToString();
+                    if (e.Row.Cells[2].Text == "0")
+                    {
+                        e.Row.Cells[2].Text = RequestStatus.RequestStatusDetail.PENDINGREVIEW.ToString();
+                    }
+                    else if (e.Row.Cells[2].Text == "1")
+                    {
+                        e.Row.Cells[2].Text = RequestStatus.RequestStatusDetail.APPROVED.ToString();
+                    }
+                    else if (e.Row.Cells[2].Text == "2")
+                    {
+                        e.Row.Cells[2].Text = RequestStatus.RequestStatusDetail.REJECTED.ToString();
+                    }
+                    else if (e.Row.Cells[2].Text == "3")
+                    {
+                        e.Row.Cells[2].Text = RequestStatus.RequestStatusDetail.COMPLETED.ToString();
+                    }
                 }
-                else if (e.Row.Cells[2].Text == "1")
-                {
-                    e.Row.Cells[2].Text = RequestStatus.RequestStatusDetail.APPROVED.ToString();
-                }
-                else if (e.Row.Cells[2].Text == "2")
-                {
-                    e.Row.Cells[2].Text = RequestStatus.RequestStatusDetail.REJECTED.ToString();
-                }
-                else if (e.Row.Cells[2].Text == "3")
-                {
-                    e.Row.Cells[2].Text = RequestStatus.RequestStatusDetail.COMPLETED.ToString();
-                }
+               
             }
 
         }
