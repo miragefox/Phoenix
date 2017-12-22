@@ -23,8 +23,12 @@ namespace Phoenix
         }
         protected void GetData()
         {
-            SqlConnection con = new SqlConnection();        //定义数据库连接对象
-            con = new SqlConnection(@"server=.\SQL2014;database=Phoenix;integrated security=sspi");
+            //var connectionString = ConfigurationManager.ConnectionStrings["AzureConnection"].ConnectionString;
+            var connectionString = ConfigurationManager.ConnectionStrings["LocalConnection"].ConnectionString;
+
+            SqlConnection con = new SqlConnection(connectionString);        //定义数据库连接对象
+
+            con = new SqlConnection(connectionString);
             SqlCommand com = new SqlCommand();              //定义数据库操作命令对象
             com.Connection = con;                           //连接数据库
             com.CommandText = "select RequestId,RequestTitle,RequestStatus from Request order by EditDttm desc"; //定义执行查询操作的sql语句
