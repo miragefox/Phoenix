@@ -64,37 +64,32 @@ namespace Phoenix
 
         protected void RequestGridView_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if (HiddenId.Value.Equals("&nbsp;")) {
-                RequestGridView.Rows[0].Enabled = false;
-            }
-            else
-            {
+
                 if (e.Row.RowType == DataControlRowType.Footer)
                 {
                     getstyle();
                 }
-                if (e.Row.RowType == DataControlRowType.DataRow)
-                {
-                    string Id;
-                    Id = e.Row.Cells[0].Text;
-                    e.Row.Attributes.Add("onclick", "ItemOver(this,'" + Id + "')");
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string Id;
+                Id = e.Row.Cells[0].Text;
+                e.Row.Attributes.Add("onclick", "ItemOver(this,'" + Id + "')");
 
-                    if (e.Row.Cells[2].Text == "0")
-                    {
-                        e.Row.Cells[2].Text = RequestStatus.RequestStatusDetail.PENDINGREVIEW.ToString();
-                    }
-                    else if (e.Row.Cells[2].Text == "1")
-                    {
-                        e.Row.Cells[2].Text = RequestStatus.RequestStatusDetail.APPROVED.ToString();
-                    }
-                    else if (e.Row.Cells[2].Text == "2")
-                    {
-                        e.Row.Cells[2].Text = RequestStatus.RequestStatusDetail.REJECTED.ToString();
-                    }
-                    else if (e.Row.Cells[2].Text == "3")
-                    {
-                        e.Row.Cells[2].Text = RequestStatus.RequestStatusDetail.COMPLETED.ToString();
-                    }
+                if (e.Row.Cells[2].Text == "0")
+                {
+                    e.Row.Cells[2].Text = RequestStatus.RequestStatusDetail.PENDINGREVIEW.ToString();
+                }
+                else if (e.Row.Cells[2].Text == "1")
+                {
+                    e.Row.Cells[2].Text = RequestStatus.RequestStatusDetail.APPROVED.ToString();
+                }
+                else if (e.Row.Cells[2].Text == "2")
+                {
+                    e.Row.Cells[2].Text = RequestStatus.RequestStatusDetail.REJECTED.ToString();
+                }
+                else if (e.Row.Cells[2].Text == "3")
+                {
+                    e.Row.Cells[2].Text = RequestStatus.RequestStatusDetail.COMPLETED.ToString();
                 }
             }
 
