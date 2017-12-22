@@ -37,22 +37,17 @@ namespace Phoenix
             if (ds.Tables[0].Rows.Count == 0)
             {
                 ds.Tables[0].Rows.Add(ds.Tables[0].NewRow());
-                RequestGridView.DataSource = ds;
                 RequestGridView.DataBind();
-                int columnCount = RequestGridView.Rows[0].Cells.Count;
-                RequestGridView.Rows[0].Cells.Clear();
-                RequestGridView.Rows[0].Cells.Add(new TableCell());
-                RequestGridView.Rows[0].Cells[0].ColumnSpan = columnCount;
-                RequestGridView.Rows[0].Cells[0].Text = "No Records Found.";
             }
         }
 
         protected void DetailsButton_Click(object sender, EventArgs e)
         {
             string id = HiddenId.Value;
-            if (id.Equals(""))
+            if (id.Equals("") || id.Equals("&nbsp;"))
             {
                 Response.Write("<script>alert('您没有选择一条记录!');</script>");
+                getstyle();
             }
             else
             {
@@ -69,6 +64,11 @@ namespace Phoenix
 
         protected void RequestGridView_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+
+                if (e.Row.RowType == DataControlRowType.Footer)
+                {
+                    getstyle();
+                }
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 string Id;
@@ -92,6 +92,26 @@ namespace Phoenix
                     e.Row.Cells[2].Text = RequestStatus.RequestStatusDetail.COMPLETED.ToString();
                 }
             }
+
+        }
+
+        private void getstyle()
+        {
+            for (int i = 0; i < 10 - RequestGridView.Rows.Count; i++)
+            {
+                int rowIndex = RequestGridView.Rows.Count + i + 1;
+                GridViewRow row = new GridViewRow(rowIndex, -1, DataControlRowType.EmptyDataRow, DataControlRowState.Normal);
+                for (int j = 0; j < RequestGridView.Columns.Count; j++)
+                {
+                    TableCell cell = new TableCell();
+                    cell.Text = "&nbsp;";
+                    row.Controls.Add(cell);
+                    row.Attributes.Add("BorderColor ", "#d2d2d2");
+                }
+
+                RequestGridView.Controls[0].Controls.AddAt(rowIndex, row);
+            }
         }
     }
 }
+
