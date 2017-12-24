@@ -28,3 +28,11 @@ C:\Users\yuhan.wang\Documents\phonex\Phoenix\Phoenixw\Phoenixw\bin\Newtonsoft.Js
 C:\Users\yuhan.wang\Documents\phonex\Phoenix\Phoenixw\Phoenixw\obj\Debug\Phoenixw.csprojResolveAssemblyReference.cache
 C:\Users\yuhan.wang\Documents\phonex\Phoenix\Phoenixw\Phoenixw\obj\Debug\Phoenixw.dll
 C:\Users\yuhan.wang\Documents\phonex\Phoenix\Phoenixw\Phoenixw\obj\Debug\Phoenixw.pdb
+C:\Users\yuhan.wang\Documents\Phoneix\Phoenix\Phoenixw\Phoenixw\bin\Phoenixw.dll.config
+C:\Users\yuhan.wang\Documents\Phoneix\Phoenix\Phoenixw\Phoenixw\bin\Phoenixw.dll
+C:\Users\yuhan.wang\Documents\Phoneix\Phoenix\Phoenixw\Phoenixw\bin\Phoenixw.pdb
+C:\Users\yuhan.wang\Documents\Phoneix\Phoenix\Phoenixw\Phoenixw\bin\Newtonsoft.Json.dll
+C:\Users\yuhan.wang\Documents\Phoneix\Phoenix\Phoenixw\Phoenixw\bin\Newtonsoft.Json.xml
+C:\Users\yuhan.wang\Documents\Phoneix\Phoenix\Phoenixw\Phoenixw\obj\Debug\Phoenixw.csprojResolveAssemblyReference.cache
+C:\Users\yuhan.wang\Documents\Phoneix\Phoenix\Phoenixw\Phoenixw\obj\Debug\Phoenixw.dll
+C:\Users\yuhan.wang\Documents\Phoneix\Phoenix\Phoenixw\Phoenixw\obj\Debug\Phoenixw.pdb
