@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Phoenix.PhoenixDataModel;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using static Phoenix.RequestStatus;
+
 namespace Phoenix
 {
     public partial class handle : System.Web.UI.Page
@@ -25,7 +28,7 @@ namespace Phoenix
 
             DisplayRequestDetal(request, requestId);
 
-            if (request.RequestStatus != Convert.ToInt32(RequestStatus.RequestStatusDetail.PENDINGREVIEW))
+            if (request.RequestStatus != Convert.ToInt32(RequestStatusDetail.PENDINGREVIEW))
             {
                 txt_Comments.Enabled = false;
                 btn_Approval.Enabled = false;
@@ -36,9 +39,9 @@ namespace Phoenix
         private readonly SqlConnection _sqlConnection = new SqlConnection(@"server=.\SQL2014;database=Phoenix;integrated security=sspi");
         private const string GetRequestListFromDb = "SELECT RE.RequestTitle,RE.RequestDetail,RE.Comments,RE.RequestStatus FROM REQUEST RE WHERE RE.REQUESTID = '{0}'";
         private const string UpdateRequestToDb = "UPDATE REQUEST SET RequestStatus={0},Comments = '{1}' WHERE REQUESTID = '{2}'";
-        public PhoenixDataModel.PhoenixDataModel.Request GetRequestList(string requestId)
+        public Request GetRequestList(string requestId)
         {
-            var request = new PhoenixDataModel.PhoenixDataModel.Request();
+            var request = new Request();
 
             var sqlBaseBuilder = new StringBuilder(GetRequestListFromDb);
             var sqlStr = string.Format(sqlBaseBuilder.ToString(), requestId);
@@ -90,7 +93,7 @@ namespace Phoenix
             _sqlConnection.Close();
         }
 
-        public void DisplayRequestDetal(PhoenixDataModel.PhoenixDataModel.Request request, string requestId)
+        public void DisplayRequestDetal(Request request, string requestId)
         {
             txt_requestId.Text = requestId;
             txt_Title.Text = request.RequestTitle;
