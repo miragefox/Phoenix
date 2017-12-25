@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System;
+using Phoenix.PhoenixDataModel;
 
 
 namespace Phoenix
@@ -26,22 +27,47 @@ namespace Phoenix
             //var connectionString = ConfigurationManager.ConnectionStrings["AzureConnection"].ConnectionString;
             var connectionString = ConfigurationManager.ConnectionStrings["LocalConnection"].ConnectionString;
 
-            SqlConnection con = new SqlConnection(connectionString);        //定义数据库连接对象
+            RequestModel requestModel = new RequestModel();
+            var getAllRequest = requestModel.GetAllRequest();
+            RequestGridView.DataSource = getAllRequest;
+            RequestGridView.DataBind();
+            int pageSize = RequestGridView.AllowPaging == true ? RequestGridView.PageSize : 10;//默认行数是10行
 
-            con = new SqlConnection(connectionString);
-            SqlCommand com = new SqlCommand();              //定义数据库操作命令对象
-            com.Connection = con;                           //连接数据库
-            com.CommandText = "select RequestId,RequestTitle,RequestStatus from Request order by EditDttm desc"; //定义执行查询操作的sql语句
-            SqlDataAdapter da = new SqlDataAdapter();       //创建数据适配器对象
-            da.SelectCommand = com;                         //执行数据库操作命令
-            DataSet ds = new DataSet();                     //创建数据集对象
-            da.Fill(ds, "request");                        //填充数据集
-            RequestGridView.DataSource = ds.Tables["Request"].DefaultView;//设置gridview控件的数据源为创建的数据集ds
-            RequestGridView.DataBind();                           //绑定数据库表中数据
-            if (ds.Tables[0].Rows.Count == 0)
+            if (RequestGridView.Rows.Count == 0)
             {
-                ds.Tables[0].Rows.Add(ds.Tables[0].NewRow());
+                // 当DataSource为空时绑定之，否则Gridview控件就不能显示
+                DataTable dt = new DataTable();
+                DataRow dr;
+                for (int i = 0; i < RequestGridView.Columns.Count; i++)
+                {
+                    dt.Columns.Add(new DataColumn(((BoundField)RequestGridView.Columns[i]).DataField, typeof(string)));
+                    dr = dt.NewRow();
+                    dr[i] = "&nbsp;";
+                }
+                for (int j = 0; j < pageSize - RequestGridView.Rows.Count; j++)
+                {
+                    dr = dt.NewRow();
+                    dt.Rows.Add(dr);
+                }
+                RequestGridView.DataSource = dt;
                 RequestGridView.DataBind();
+            }
+            else
+            {
+                for (int i = 0; i < 10 - RequestGridView.Rows.Count; i++)
+                {
+                    int rowIndex = RequestGridView.Rows.Count + i + 1;
+                    GridViewRow row = new GridViewRow(rowIndex, -1, DataControlRowType.EmptyDataRow, DataControlRowState.Normal);
+                    for (int j = 0; j < RequestGridView.Columns.Count; j++)
+                    {
+                        TableCell cell = new TableCell();
+                        cell.Text = "&nbsp;";
+                        row.Controls.Add(cell);
+                        row.Attributes.Add("BorderColor ", "#d2d2d2");
+                    }
+
+                    RequestGridView.Controls[0].Controls.AddAt(rowIndex, row);
+                }
             }
         }
 
@@ -51,7 +77,6 @@ namespace Phoenix
             if (id =="" || id =="&nbsp;")
             {
                 Response.Write("<script>alert('您没有选择一条记录!');</script>");
-                getstyle();
             }
             else
             {
@@ -68,10 +93,6 @@ namespace Phoenix
 
         protected void RequestGridView_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.Footer)
-             {
-                getstyle();
-             }
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 string Id;
@@ -100,24 +121,6 @@ namespace Phoenix
                
             }
 
-        }
-
-        private void getstyle()
-        {
-            for (int i = 0; i < 10 - RequestGridView.Rows.Count; i++)
-            {
-                int rowIndex = RequestGridView.Rows.Count + i + 1;
-                GridViewRow row = new GridViewRow(rowIndex, -1, DataControlRowType.EmptyDataRow, DataControlRowState.Normal);
-                for (int j = 0; j < RequestGridView.Columns.Count; j++)
-                {
-                    TableCell cell = new TableCell();
-                    cell.Text = "&nbsp;";
-                    row.Controls.Add(cell);
-                    row.Attributes.Add("BorderColor ", "#d2d2d2");
-                }
-
-                RequestGridView.Controls[0].Controls.AddAt(rowIndex, row);
-            }
         }
     }
 }

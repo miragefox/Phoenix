@@ -5,6 +5,7 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using Phoniex.dbaccess;
+using System.Data;
 
 namespace Phoenix.PhoenixDataModel
 {
@@ -32,8 +33,15 @@ namespace Phoenix.PhoenixDataModel
 
             var table = DBHelper.GetRecords(sqlStr);
 
-            //list
-
+            if (table.Rows.Count > 0)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    Request requestObject = new Request();
+                    SetValue(requestObject, row);
+                    requestList.Add(requestObject);
+                }
+            }
             return requestList;
         }
 
@@ -54,6 +62,12 @@ namespace Phoenix.PhoenixDataModel
             //no use of this return value
             var updateOk = DBHelper.ExecuteNonQuery(sqlStr);
             return updateOk;
+        }
+        public void SetValue(Request request, DataRow dataRow)
+        {
+            request.RequestId = dataRow[0].ToString();
+            request.RequestTitle = dataRow[1].ToString();
+            request.RequestStatus = Convert.ToInt32(dataRow[2]);
         }
 
     }
