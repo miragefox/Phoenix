@@ -11,63 +11,62 @@ namespace Phoenix.PhoenixDataModel
 {
     public class RequestModel
     {
-        private const string GetRequestFromDb = "SELECT RE.RequestTitle,RE.RequestDetail,RE.Comments,RE.RequestStatus FROM REQUEST RE WHERE RE.REQUESTID = '{0}'";
+        private const string GetRequestById = "SELECT RE.RequestTitle,RE.RequestDetail,RE.Comments,RE.RequestStatus FROM REQUEST RE WHERE RE.REQUESTID = '{0}'";
         private const string UpdateRequestToDb = "UPDATE REQUEST SET RequestStatus={0},Comments = '{1}' WHERE REQUESTID = '{2}'";
         private const string GetRequestListToDb = "select RequestId,RequestTitle,RequestStatus from Request order by EditDttm desc";
         private const string InsertRequest = "insert into Request(RequestId,RequestTitle,RequestDetail,Comments,RequestStatus,EditDttm) values('{0}','{1}','{2}','',{3},'{4}')";
-        public static bool AddRequest(Request request)
+        public bool AddRequest(Request request)
         {
             var sqlBaseBuilder = new StringBuilder(InsertRequest);
             var sqlStr = string.Format(sqlBaseBuilder.ToString(), request.RequestId, request.RequestTitle, request.RequestDetail, request.RequestStatus, DateTime.Now);
             //no use of this return value
             var updateOk = DBHelper.ExecuteNonQuery(sqlStr);
-            return updateOk;
+            return updateOk>0;
         }
 
         public List<Request> GetAllRequest()
         {
             var requestList = new List<Request>();
 
-            var sqlBaseBuilder = new StringBuilder(GetRequestListToDb);
-            var sqlStr = string.Format(sqlBaseBuilder.ToString());
+            var table = DBHelper.GetRecords(GetRequestListToDb);
 
-            var table = DBHelper.GetRecords(sqlStr);
-
-            if (table.Rows.Count > 0)
-            {
                 foreach (DataRow row in table.Rows)
                 {
-                    Request requestObject = new Request();
-                    SetValue(requestObject, row);
-                    requestList.Add(requestObject);
+                var request = GenerateRequest(row);
+                    requestList.Add(request);
                 }
-            }
             return requestList;
         }
 
-        public static Request FindRequestById(string requestId)
+        public Request FindRequestById(string requestId)
         {
-            var sqlBaseBuilder = new StringBuilder(GetRequestFromDb);
+            var sqlBaseBuilder = new StringBuilder(GetRequestById);
             var sqlStr = string.Format(sqlBaseBuilder.ToString(), requestId);
 
-            var request = DBHelper.ExecuteScalar(sqlStr);
-
-            return request;
+            var table = DBHelper.GetRecords(GetRequestListToDb);
+            if(table.Rows.Count>0)
+            {
+                var request = GenerateRequest(table.Rows[0]);
+                return request;
+            }       
+            return null;
         }
 
-        public static bool UpdateRequest(Request request)
+        public bool UpdateRequest(Request request)
         {
             var sqlBaseBuilder = new StringBuilder(UpdateRequestToDb);
             var sqlStr = string.Format(sqlBaseBuilder.ToString(), request.RequestStatus, request.Comments, request.RequestId);
             //no use of this return value
             var updateOk = DBHelper.ExecuteNonQuery(sqlStr);
-            return updateOk;
+            return updateOk>0;
         }
-        public void SetValue(Request request, DataRow dataRow)
+        public Request GenerateRequest(DataRow dataRow)
         {
+            Request request = new Request();
             request.RequestId = dataRow[0].ToString();
             request.RequestTitle = dataRow[1].ToString();
             request.RequestStatus = Convert.ToInt32(dataRow[2]);
+            return request;
         }
 
     }

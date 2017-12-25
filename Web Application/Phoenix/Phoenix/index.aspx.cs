@@ -24,12 +24,9 @@ namespace Phoenix
         }
         protected void GetData()
         {
-            //var connectionString = ConfigurationManager.ConnectionStrings["AzureConnection"].ConnectionString;
-            var connectionString = ConfigurationManager.ConnectionStrings["LocalConnection"].ConnectionString;
-
             RequestModel requestModel = new RequestModel();
-            var getAllRequest = requestModel.GetAllRequest();
-            RequestGridView.DataSource = getAllRequest;
+            var requestList = requestModel.GetAllRequest();
+            RequestGridView.DataSource = requestList;
             RequestGridView.DataBind();
             int pageSize = RequestGridView.AllowPaging == true ? RequestGridView.PageSize : 10;//默认行数是10行
 

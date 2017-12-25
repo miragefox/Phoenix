@@ -8,6 +8,7 @@ namespace Phoenix
 {
     public partial class request : System.Web.UI.Page
     {
+        RequestModel requestmodel = new RequestModel();
         protected void Page_Load(object sender, EventArgs e)
         {
             var requestid = Guid.NewGuid().ToString();
@@ -22,7 +23,7 @@ namespace Phoenix
             }
             else
             {
-                bool addRequestResult = RequestModel.AddRequest(new Request{
+                bool addRequestResult = requestmodel.AddRequest(new Request{
                     RequestId = RequestId.Text,
                     RequestTitle= RequestTitle.Text,
                     RequestDetail= RequestDetails.Text,
@@ -48,7 +49,7 @@ namespace Phoenix
             }
             else
             {
-                bool addRequestResult = RequestModel.AddRequest(new Request
+                bool addRequestResult = requestmodel.AddRequest(new Request
                 {
                     RequestId = RequestId.Text,
                     RequestTitle = RequestTitle.Text,

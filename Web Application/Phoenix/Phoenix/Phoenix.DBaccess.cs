@@ -15,7 +15,7 @@ namespace Phoniex.dbaccess
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>
-        public static bool ExecuteNonQuery(string sql, SqlParameter[] param = null)
+        public static int ExecuteNonQuery(string sql, SqlParameter[] param = null)
         {
             try
             {
@@ -25,12 +25,11 @@ namespace Phoniex.dbaccess
                 {
                     com.Parameters.AddRange(param);
                 }
-                com.ExecuteNonQuery();
-                return true;
+                return com.ExecuteNonQuery();
             }
             catch (Exception)
             {
-                return false;
+                throw;
             }
             finally
             {
@@ -44,27 +43,28 @@ namespace Phoniex.dbaccess
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>
-        public static Request ExecuteScalar(string sql)
-        {
-            var request = new Request();
+        //public static Request ExecuteScalar(string sql)
+        //{
+        //    var request = new Request();
 
-            var da = new SqlDataAdapter(sql, connection);
-            var requestTable = new DataSet();
-            da.Fill(requestTable);
+        //    var da = new SqlDataAdapter(sql, connection);
+        //    var requestTable = new DataSet();
+        //    da.Fill(requestTable);
 
-            if (requestTable.Tables[0].Rows.Count != 0)
-            {
-                request.RequestTitle = requestTable.Tables[0].Rows[0].Field<string>("RequestTitle");
-                request.RequestDetail = requestTable.Tables[0].Rows[0].Field<string>("RequestDetail");
-                request.Comments = requestTable.Tables[0].Rows[0].Field<string>("Comments");
-                request.RequestStatus = requestTable.Tables[0].Rows[0].Field<Int32>("RequestStatus");
-            }
+        //    if (requestTable.Tables[0].Rows.Count != 0)
+        //    {
+        //        request.RequestTitle = requestTable.Tables[0].Rows[0].Field<string>("RequestTitle");
+        //        request.RequestDetail = requestTable.Tables[0].Rows[0].Field<string>("RequestDetail");
+        //        request.Comments = requestTable.Tables[0].Rows[0].Field<string>("Comments");
+        //        request.RequestStatus = requestTable.Tables[0].Rows[0].Field<Int32>("RequestStatus");
+        //    }
 
-            return request;
+        //    return request;
 
-        }
+        //}
+
         /// <summary>
-        /// return all
+        /// return select result
         /// </summary>
         /// <param name="selectCommand"></param>
         /// <param name="tableName"></param>
