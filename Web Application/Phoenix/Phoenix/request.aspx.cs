@@ -13,11 +13,6 @@ namespace Phoenix
             var requestid = Guid.NewGuid().ToString();
             RequestId.Text = requestid;
         }
-
-        //private readonly SqlConnection _sqlConnection = new SqlConnection(@"server=.\SQL2014;database=Phoenix;integrated security=sspi");
-        //private const string InsertRequest = "insert into Request(RequestId,RequestTitle,RequestDetail,Comments,RequestStatus,EditDttm) values('{0}','{1}','{2}','',{3},'{4}')";
-       
-
         protected void SendForApprovalButtonClick(object sender, EventArgs e)
         {
 
@@ -27,7 +22,7 @@ namespace Phoenix
             }
             else
             {
-                var addRequestResult = RequestModel.AddRequest(new Request{
+                bool addRequestResult = RequestModel.AddRequest(new Request{
                     RequestId = RequestId.Text,
                     RequestTitle= RequestTitle.Text,
                     RequestDetail= RequestDetails.Text,
@@ -45,7 +40,6 @@ namespace Phoenix
                 Response.Redirect("index.aspx");
             }
         }
-
         protected void NotifyButtonClick(object sender, EventArgs e)
         {
             if (RequestId.Text == "" || RequestTitle.Text == "" || RequestDetails.Text == "")
@@ -54,7 +48,7 @@ namespace Phoenix
             }
             else
             {
-                var addRequestResult = RequestModel.AddRequest(new Request
+                bool addRequestResult = RequestModel.AddRequest(new Request
                 {
                     RequestId = RequestId.Text,
                     RequestTitle = RequestTitle.Text,
@@ -73,7 +67,6 @@ namespace Phoenix
                 Response.Redirect("index.aspx");
             }
         }
-
         protected void CancelButtonClick(object sender, EventArgs e)
         {
             Response.Redirect("index.aspx");
