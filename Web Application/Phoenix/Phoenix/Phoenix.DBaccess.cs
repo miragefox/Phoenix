@@ -2,13 +2,23 @@
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
-using Phoenix.PhoenixDataModel;
+
 
 namespace Phoniex.dbaccess
 {
     public static class DBHelper
-    {
-        private static SqlConnection connection = new SqlConnection(@"server=.\SQL2014;database=Phoenix;integrated security=sspi");
+     { 
+         static SqlConnection connection; 
+         private static SqlConnection Connection
+         { 
+             get { 
+                 if (connection == null) 
+                 { 
+                     connection = new SqlConnection(ConfigurationManager.ConnectionStrings["LocalConnection"].ConnectionString); 
+                 } 
+                 return connection; 
+             } 
+         } 
 
         /// <summary>
         /// add,delete,update
@@ -19,7 +29,7 @@ namespace Phoniex.dbaccess
         {
             try
             {
-                connection.Open();
+                connection.Open();//打开数据库连接
                 SqlCommand com = new SqlCommand(sql, connection);
                 if (param != null)
                 {
@@ -73,12 +83,13 @@ namespace Phoniex.dbaccess
         {
             try
             {
+                //创建数据适配器对象
                 SqlDataAdapter da = new SqlDataAdapter(selectCommand, connection);
                 if (param != null)
                 {
                     da.SelectCommand.Parameters.AddRange(param);
                 }
-
+                //创建数据集
                 DataSet requestListTable = new DataSet();
                 da.Fill(requestListTable);
                 return requestListTable.Tables[0];
