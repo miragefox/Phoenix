@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using Phoniex.dbaccess;
 using System.Data;
+using static Phoenix.RequestStatus;
 
 namespace Phoenix.PhoenixDataModel
 {
@@ -13,28 +14,27 @@ namespace Phoenix.PhoenixDataModel
     {
         private const string GetRequestById = "SELECT RE.RequestTitle,RE.RequestDetail,RE.Comments,RE.RequestStatus FROM REQUEST RE WHERE RE.REQUESTID = '{0}'";
         private const string UpdateRequestToDb = "UPDATE REQUEST SET RequestStatus={0},Comments = '{1}' WHERE REQUESTID = '{2}'";
-        private const string GetRequestListToDb = "select RequestId,RequestTitle,RequestStatus from Request order by EditDttm desc";
-        private const string InsertRequest = "insert into Request(RequestId,RequestTitle,RequestDetail,Comments,RequestStatus,EditDttm) values('{0}','{1}','{2}','',{3},'{4}')";
+        private const string GetRequestListFromDb = "SELECT RequestId,RequestTitle,RequestStatus from Request order by EditDttm desc";
+        private const string InsertRequest = "INSERT INTO Request(RequestId,RequestTitle,RequestDetail,Comments,RequestStatus,EditDttm) VALUES('{0}','{1}','{2}','',{3},'{4}')";
         public bool AddRequest(Request request)
         {
             var sqlBaseBuilder = new StringBuilder(InsertRequest);
-            var sqlStr = string.Format(sqlBaseBuilder.ToString(), request.RequestId, request.RequestTitle, request.RequestDetail, request.RequestStatus, DateTime.Now);
-            //no use of this return value
-            var updateOk = DBHelper.ExecuteNonQuery(sqlStr);
-            return updateOk>0;
+            var sqlStr = string.Format(sqlBaseBuilder.ToString(), request.RequestId, request.RequestTitle, request.RequestDetail, (int)request.RequestStatus, DateTime.Now);
+            var addOk = DBHelper.ExecuteNonQuery(sqlStr);
+            return addOk > 0;
         }
 
         public List<Request> GetAllRequest()
         {
             var requestList = new List<Request>();
 
-            var table = DBHelper.GetRecords(GetRequestListToDb);
+            var table = DBHelper.GetRecords(GetRequestListFromDb);
 
-                foreach (DataRow row in table.Rows)
-                {
+            foreach (DataRow row in table.Rows)
+            {
                 var request = GenerateRequest(row);
-                    requestList.Add(request);
-                }
+                requestList.Add(request);
+            }
             return requestList;
         }
 
@@ -43,29 +43,28 @@ namespace Phoenix.PhoenixDataModel
             var sqlBaseBuilder = new StringBuilder(GetRequestById);
             var sqlStr = string.Format(sqlBaseBuilder.ToString(), requestId);
 
-            var table = DBHelper.GetRecords(GetRequestListToDb);
-            if(table.Rows.Count>0)
+            var table = DBHelper.GetRecords(GetRequestById);
+            if (table.Rows.Count > 0)
             {
                 var request = GenerateRequest(table.Rows[0]);
                 return request;
-            }       
+            }
             return null;
         }
 
         public bool UpdateRequest(Request request)
         {
             var sqlBaseBuilder = new StringBuilder(UpdateRequestToDb);
-            var sqlStr = string.Format(sqlBaseBuilder.ToString(), request.RequestStatus, request.Comments, request.RequestId);
-            //no use of this return value
+            var sqlStr = string.Format(sqlBaseBuilder.ToString(), (int)request.RequestStatus, request.Comments, request.RequestId);
             var updateOk = DBHelper.ExecuteNonQuery(sqlStr);
-            return updateOk>0;
+            return updateOk > 0;
         }
         public Request GenerateRequest(DataRow dataRow)
         {
             Request request = new Request();
             request.RequestId = dataRow[0].ToString();
             request.RequestTitle = dataRow[1].ToString();
-            request.RequestStatus = Convert.ToInt32(dataRow[2]);
+            request.RequestStatus = (RequestStatusDetail)Enum.ToObject(typeof(RequestStatusDetail), Convert.ToUInt32(dataRow[2]));
             return request;
         }
 
@@ -76,7 +75,7 @@ namespace Phoenix.PhoenixDataModel
         public string RequestTitle { get; set; }
         public string RequestDetail { get; set; }
         public string Comments { get; set; }
-        public int RequestStatus { get; set; }
+        public RequestStatusDetail RequestStatus { get; set; }
         public DateTime EditTime { get; set; }
     }
 }
