@@ -18,15 +18,17 @@ namespace Phoenixw
         [DataMember]
         public string Comments { get; set; }
         [DataMember]
+        public string UpdateUser { get; set; }
+        [DataMember]
         public Status Status { get; set; }
         [DataMember]
         public DateTime EditDttm { get; set; }
     }
     public enum Status
     {
-        PenddingApprove,
-        Approved,
-        Rejected,
-        Cpmpleted
+        Pending,
+        Approve,
+        Reject,
+        Ignore
     }
 }

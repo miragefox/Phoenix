@@ -32,7 +32,8 @@ namespace Phoenixw
                     var comments = item.Comments;
                     var requestStatus = item.Status;
                     var editDttm = DateTime.Now;
-                    UpdateRequestToDB(requestId, comments, requestStatus, editDttm);
+                    var updateUser = item.UpdateUser;
+                    UpdateRequestToDB(requestId, comments, requestStatus, updateUser, editDttm);
                 }
              }
 
@@ -45,7 +46,7 @@ namespace Phoenixw
         }
 
         //更新数据库
-        private void UpdateRequestToDB(string requestId, string comments, Status requestStatus, DateTime editDttm)
+        private void UpdateRequestToDB(string requestId, string comments, Status requestStatus, string updateUser, DateTime editDttm)
         {
             WebOperationContext woc = WebOperationContext.Current;
             try
@@ -63,7 +64,7 @@ namespace Phoenixw
                     {
                         sqlConnection.Open();
 
-                        string strSql = "UPDATE  Request  SET Comments=@comments,RequestStatus=@requestStatus,EditDttm=@editDttm WHERE RequestId=@requestId";
+                        string strSql = "UPDATE  Request  SET Comments=@comments,RequestStatus=@requestStatus,UpdateUser=@updateUser,EditDttm=@editDttm WHERE RequestId=@requestId";
                         SqlCommand cmd = new SqlCommand(strSql, sqlConnection);
                         SqlParameter parn = new SqlParameter("@requestId", requestId);
                         cmd.Parameters.Add(parn);
@@ -71,6 +72,8 @@ namespace Phoenixw
                         cmd.Parameters.Add(parc);
                         SqlParameter parre = new SqlParameter("@requestStatus", requestStatus);
                         cmd.Parameters.Add(parre);
+                        SqlParameter parrw = new SqlParameter("@updateUser", updateUser);
+                        cmd.Parameters.Add(parrw);
                         SqlParameter parra = new SqlParameter("@editDttm", editDttm);
                         cmd.Parameters.Add(parra);
                         //result接受受影响的行数，也就是说大于0的话表示添加成功
