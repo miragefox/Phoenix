@@ -11,7 +11,8 @@ CREATE TABLE [dbo].[Request](
        [RequestDetail] [nvarchar](600) NOT NULL,
        [Comments] [nvarchar](400) NULL,
        [RequestStatus] [int] NOT NULL,
-       [EditDttm] [datetime]NOT NULL 
+       [EditDttm] [datetime]NOT NULL,
+	   [Priority][int] DEFAULT 0 NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
        [RequestId]
