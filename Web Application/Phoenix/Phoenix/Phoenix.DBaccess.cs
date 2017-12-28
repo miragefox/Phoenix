@@ -14,7 +14,7 @@ namespace Phoniex.dbaccess
              get { 
                  if (connection == null) 
                  { 
-                     connection = new SqlConnection(ConfigurationManager.ConnectionStrings["LocalConnection"].ConnectionString); 
+                     connection = new SqlConnection(ConfigurationManager.ConnectionStrings["LocalConnection"].ConnectionString);
                  } 
                  return connection; 
              } 
@@ -49,31 +49,6 @@ namespace Phoniex.dbaccess
 
 
         /// <summary>
-        /// return one
-        /// </summary>
-        /// <param name="sql"></param>
-        /// <returns></returns>
-        //public static Request ExecuteScalar(string sql)
-        //{
-        //    var request = new Request();
-
-        //    var da = new SqlDataAdapter(sql, connection);
-        //    var requestTable = new DataSet();
-        //    da.Fill(requestTable);
-
-        //    if (requestTable.Tables[0].Rows.Count != 0)
-        //    {
-        //        request.RequestTitle = requestTable.Tables[0].Rows[0].Field<string>("RequestTitle");
-        //        request.RequestDetail = requestTable.Tables[0].Rows[0].Field<string>("RequestDetail");
-        //        request.Comments = requestTable.Tables[0].Rows[0].Field<string>("Comments");
-        //        request.RequestStatus = requestTable.Tables[0].Rows[0].Field<Int32>("RequestStatus");
-        //    }
-
-        //    return request;
-
-        //}
-
-        /// <summary>
         /// return select result
         /// </summary>
         /// <param name="selectCommand"></param>
@@ -84,15 +59,15 @@ namespace Phoniex.dbaccess
             try
             {
                 //创建数据适配器对象
-                SqlDataAdapter da = new SqlDataAdapter(selectCommand, connection);
+                SqlDataAdapter da = new SqlDataAdapter(selectCommand, Connection);
                 if (param != null)
                 {
                     da.SelectCommand.Parameters.AddRange(param);
                 }
                 //创建数据集
-                DataSet requestListTable = new DataSet();
-                da.Fill(requestListTable);
-                return requestListTable.Tables[0];
+                DataSet ds = new DataSet();
+                da.Fill(ds); //填充数据集 
+                return ds.Tables[0];
             }
             catch (Exception e)
             {
