@@ -28,7 +28,7 @@ namespace Phoenix
 
             DisplayRequestDetal(request, requestId);
 
-            if (request.RequestStatus != Convert.ToInt32(RequestStatusDetail.PENDINGREVIEW))
+            if (request.RequestStatus != RequestStatusDetail.PENDINGREVIEW)
             {
                 txt_Comments.Enabled = false;
                 btn_Approval.Enabled = false;
@@ -55,7 +55,7 @@ namespace Phoenix
                 request.RequestTitle = configs.Tables[0].Rows[0].Field<string>("RequestTitle");
                 request.RequestDetail = configs.Tables[0].Rows[0].Field<string>("RequestDetail");
                 request.Comments = configs.Tables[0].Rows[0].Field<string>("Comments");
-                request.RequestStatus = configs.Tables[0].Rows[0].Field<Int32>("RequestStatus");
+                request.RequestStatus = configs.Tables[0].Rows[0].Field<RequestStatusDetail>("RequestStatus");
             }
 
             return request;
@@ -99,22 +99,8 @@ namespace Phoenix
             txt_Title.Text = request.RequestTitle;
             txt_Details.Text = request.RequestDetail;
             txt_Comments.Text = request.Comments;
+            txt_status.Text = request.RequestStatus.ToString();
 
-            switch(request.RequestStatus)
-            {
-                case
-                0: txt_status.Text = RequestStatus.RequestStatusDetail.PENDINGREVIEW.ToString();
-                    break;
-                case
-                1: txt_status.Text = RequestStatus.RequestStatusDetail.APPROVED.ToString();
-                    break;
-                case
-                2: txt_status.Text = RequestStatus.RequestStatusDetail.REJECTED.ToString();
-                    break;
-                case
-                3: txt_status.Text = RequestStatus.RequestStatusDetail.COMPLETED.ToString();
-                    break;
-            }
 
         }
 
