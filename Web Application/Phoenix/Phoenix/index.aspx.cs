@@ -16,11 +16,11 @@ namespace Phoenix
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!IsPostBack)
             {
                 GetData();
             }
-
         }
         protected void GetData()
         {
@@ -71,16 +71,16 @@ namespace Phoenix
         protected void DetailsButton_Click(object sender, EventArgs e)
         {
             string id = HiddenId.Value;
-            if (id =="" || id =="&nbsp;")
+            if (id == "" || id == "&nbsp;")
             {
-                Response.Write("<script>alert('您没有选择一条记录!');</script>");
+                ErrorMessage.Text = "You should select at least one record.";
+                GetData();
             }
             else
             {
-                string ToNewPage = "handle.aspx?id=" + id;
-                Response.Redirect(ToNewPage);
+                Session["id"] = id;
+                Response.Redirect("handle.aspx");
             }
-            
         }
 
         protected void AddNewButton_Click(object sender, EventArgs e)
@@ -97,27 +97,8 @@ namespace Phoenix
                 if (Id != "&nbsp;")
                 {
                     e.Row.Attributes.Add("onclick", "ItemOver(this,'" + Id + "')");
-
-                    if (e.Row.Cells[2].Text == "0")
-                    {
-                        e.Row.Cells[2].Text = RequestStatus.RequestStatusDetail.PENDINGREVIEW.ToString();
-                    }
-                    else if (e.Row.Cells[2].Text == "1")
-                    {
-                        e.Row.Cells[2].Text = RequestStatus.RequestStatusDetail.APPROVED.ToString();
-                    }
-                    else if (e.Row.Cells[2].Text == "2")
-                    {
-                        e.Row.Cells[2].Text = RequestStatus.RequestStatusDetail.REJECTED.ToString();
-                    }
-                    else if (e.Row.Cells[2].Text == "3")
-                    {
-                        e.Row.Cells[2].Text = RequestStatus.RequestStatusDetail.COMPLETED.ToString();
-                    }
                 }
-               
             }
-
         }
     }
 }

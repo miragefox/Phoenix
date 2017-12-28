@@ -1,6 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="handle.aspx.cs" Inherits="Phoenix.handle" MasterPageFile="~/MasterPage.Master"%>
 <asp:Content ID="head" ContentPlaceHolderID="head" runat="server">
-
     <style>
      .requestDetials {
          width: 600px;

@@ -57,6 +57,7 @@
                 <SortedDescendingCellStyle BackColor="#CAC9C9" />
                 <SortedDescendingHeaderStyle BackColor="#00547E" />
             </asp:GridView>
+            <div><asp:Label ID="ErrorMessage" runat="server" Font-Size="Medium" ForeColor="Red" Text="" Visible="true" Height="5px"></asp:Label></div>
             <input type="hidden" id="HiddenId" name="HiddenId" runat="server"/>
             <asp:Button CssClass="IndexButton" ID="DetailsButton" runat="server" OnClick="DetailsButton_Click" Text="Details"/>
             <asp:Button CssClass="IndexButton" ID="AddNewButton" runat="server" Text="Add New" OnClick="AddNewButton_Click" />

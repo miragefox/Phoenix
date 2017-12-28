@@ -14,7 +14,7 @@ namespace Phoenix
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            var requestId = Request.QueryString["Id"];
+            var requestId = Session["id"].ToString();
 
             if (!IsPostBack)
             {
