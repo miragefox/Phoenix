@@ -37,9 +37,9 @@ namespace Phoniex.dbaccess
                 }
                 return com.ExecuteNonQuery();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                throw e;
             }
             finally
             {
@@ -94,10 +94,10 @@ namespace Phoniex.dbaccess
                 da.Fill(requestListTable);
                 return requestListTable.Tables[0];
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
-                //  throw new Exception(e.Message);
+                //throw e;
+                throw new Exception(e.Message);
             }
         }
     }
