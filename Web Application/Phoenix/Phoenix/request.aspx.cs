@@ -57,11 +57,31 @@ namespace Phoenix
                 RequestTitle = RequestTitle.Text,
                 RequestDetail = RequestDetails.Text,
                 RequestStatus = requestStatus,
-                EditTime = DateTime.Now
+                EditTime = DateTime.Now,
+                Priority = GetPriority()
             });
             return addRequestFeedback;
         }
-
+         public int GetPriority()
+        {
+            int priority;
+            switch (Priority.SelectedValue) 
+            {
+                case "Default":
+                    priority = 0;
+                    break;
+                case "Low Importance":
+                    priority= 1;
+                    break;
+                case "High Importance":
+                    priority= 2;
+                    break;
+                default:
+                    priority= 0;
+                    break;
+            }
+            return priority;
+        }
         public void ReturnFeedback(bool feedback)
         {
             if (feedback)

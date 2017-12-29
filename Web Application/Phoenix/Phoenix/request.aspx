@@ -46,6 +46,10 @@
             margin-right:50px;
             margin-left:50px;
     }
+        .radiobutttons {
+            background-color:#077ac3;
+            color:white;
+        }
 
 </style>
 </asp:Content>
@@ -62,6 +66,13 @@
         <div runat="server" class="formdetails">
             <asp:label associatedcontrolid="RequestDetails" text="RequestDetails" runat="server" CssClass="labledetails" />
             <asp:TextBox id="RequestDetails" textmode="MultiLine" runat="server" CssClass="textboxdetails"/>
+        </div>
+        <div runat="server" class="form">
+            <asp:RadioButtonList id="Priority" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" CssClass="radiobutttons">
+            <asp:ListItem Selected="True">Default</asp:ListItem>
+            <asp:ListItem>Low Importance</asp:ListItem>
+            <asp:ListItem>High Importance</asp:ListItem>
+           </asp:RadioButtonList>  
         </div>
     </div>
         <asp:Button ID="SendForApprovalButton" runat="server" CssClass="buttons" Text="Send for Approval" OnClick="SendForApprovalButtonClick" />
