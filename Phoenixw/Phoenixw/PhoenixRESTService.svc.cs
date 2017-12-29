@@ -13,9 +13,9 @@ namespace Phoenixw
     public class PhoenixRESTService : IPhoenixRESTService
     {
         //连接本地数据库
-        SqlConnection sqlConnection = new SqlConnection(@"server=.\SQL2014;database=Phoenix;integrated security=sspi");
+        //SqlConnection sqlConnection = new SqlConnection(@"server=.\SQL2014;database=Phoenix;integrated security=sspi");
         //Azure数据库
-        //SqlConnection sqlConnection = new SqlConnection(@"Server=tcp:mhedb.database.chinacloudapi.cn,1433;Initial Catalog = zengguosqlservertest; Persist Security Info=False;uid=mheadmin;password=Dalian@123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout = 30;");
+        SqlConnection sqlConnection = new SqlConnection(@"Server=tcp:mhedb.database.chinacloudapi.cn,1433;Initial Catalog = zengguosqlservertest; Persist Security Info=False;uid=mheadmin;password=Dalian@123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout = 30;");
 
         public void InsertRequest(PhoenixRequest phoenixRequest)
         {
@@ -32,8 +32,7 @@ namespace Phoenixw
                     var comments = item.Comments;
                     var requestStatus = item.Status;
                     var editDttm = DateTime.Now;
-                    var updateUser = item.UpdateUser;
-                    UpdateRequestToDB(requestId, comments, requestStatus, updateUser, editDttm);
+                    UpdateRequestToDB(requestId, comments, requestStatus, editDttm);
                 }
              }
 
@@ -46,7 +45,7 @@ namespace Phoenixw
         }
 
         //更新数据库
-        private void UpdateRequestToDB(string requestId, string comments, Status requestStatus, string updateUser, DateTime editDttm)
+        private void UpdateRequestToDB(string requestId, string comments, Status requestStatus, DateTime editDttm)
         {
             WebOperationContext woc = WebOperationContext.Current;
             try
@@ -72,8 +71,6 @@ namespace Phoenixw
                         cmd.Parameters.Add(parc);
                         SqlParameter parre = new SqlParameter("@requestStatus", requestStatus);
                         cmd.Parameters.Add(parre);
-                        SqlParameter parrw = new SqlParameter("@updateUser", updateUser);
-                        cmd.Parameters.Add(parrw);
                         SqlParameter parra = new SqlParameter("@editDttm", editDttm);
                         cmd.Parameters.Add(parra);
                         //result接受受影响的行数，也就是说大于0的话表示添加成功
