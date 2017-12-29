@@ -10,6 +10,13 @@
          width: 650px;
          height: 220px;
      }
+        .messagelable {
+        width: 650px;
+        display:inline-block;
+        text-align:center;
+        color:red;
+        height: 20px;
+        }
     .lable {
         width: 100px;
         display:inline-block;
@@ -54,7 +61,10 @@
 </style>
 </asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyContent" runat="server">
-    <div runat="server" style=" width: 650px;margin-left: 350px">   
+    <div runat="server" style=" width: 650px;margin-left: 350px">  
+        <div runat="server" class="form">
+           <asp:label id="ErrorMessage" runat="server" CssClass="messagelable" />           
+        </div>
         <div runat="server" class="form">
            <asp:label associatedcontrolid="RequestId" text="RequestId" runat="server" CssClass="lable" />
            <asp:TextBox id="RequestId" Enabled="false" runat="server" CssClass="textbox"/>                
