@@ -15,11 +15,11 @@ namespace Phoenix.PhoenixDataModel
         private const string GetRequestById = "SELECT RE.RequestId,RE.RequestTitle,RE.RequestStatus,RE.RequestDetail,RE.Comments FROM REQUEST RE WHERE RE.REQUESTID = '{0}'";
         private const string UpdateRequestToDb = "UPDATE REQUEST SET RequestStatus={0},Comments = '{1}' WHERE REQUESTID = '{2}'";
         private const string GetRequestListFromDb = "SELECT RequestId,RequestTitle,RequestStatus,RequestDetail,Comments from Request order by EditDttm desc";
-        private const string InsertRequest = "INSERT INTO Request(RequestId,RequestTitle,RequestDetail,Comments,RequestStatus,EditDttm) VALUES('{0}','{1}','{2}','',{3},'{4}')";
+        private const string InsertRequest = "INSERT INTO Request(RequestId,RequestTitle,RequestDetail,Comments,RequestStatus,EditDttm,Priority) VALUES('{0}','{1}','{2}','',{3},'{4}',{5})";
         public bool AddRequest(Request request)
         {
             var sqlBaseBuilder = new StringBuilder(InsertRequest);
-            var sqlStr = string.Format(sqlBaseBuilder.ToString(), request.RequestId, request.RequestTitle, request.RequestDetail, (int)request.RequestStatus, DateTime.Now);
+            var sqlStr = string.Format(sqlBaseBuilder.ToString(), request.RequestId, request.RequestTitle, request.RequestDetail, (int)request.RequestStatus, DateTime.Now,request.Priority);
             var addOk = DBHelper.ExecuteNonQuery(sqlStr);
             return addOk > 0;
         }
@@ -79,5 +79,6 @@ namespace Phoenix.PhoenixDataModel
         public string Comments { get; set; }
         public RequestStatusDetail RequestStatus { get; set; }
         public DateTime EditTime { get; set; }
+        public int Priority { get; set; }
     }
 }
