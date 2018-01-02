@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Text;
 using System.Web;
 using System.Net;
@@ -25,8 +26,9 @@ namespace Phoenix
         {
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://mhe-ming-cluster.chinanorth.cloudapp.chinacloudapi.cn:20000/api/Requests");//webconfig里
-                request.Method = "POST";
+                // Prepare web request...  
+                var sendForApprovalUrl = ConfigurationManager.ConnectionStrings["SendForApprovalUrl"].ConnectionString;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(sendForApprovalUrl); request.Method = "POST";
                 request.ContentType = "application/json";
 
                 var ToPeople = new List<long>();
@@ -36,12 +38,11 @@ namespace Phoenix
 
                 string requestjsontrans = JsonConvert.SerializeObject(sendForApproval);
                 StreamWriter writer = new StreamWriter(request.GetRequestStream(), Encoding.ASCII);
-
                 writer.Write(requestjsontrans);
                 writer.Flush();
 
+                // Get response 
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
             }
             catch (Exception)
             {
@@ -53,9 +54,9 @@ namespace Phoenix
         {
             try
             {
-                // Prepare web request...  
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://mhe-ming-cluster.chinanorth.cloudapp.chinacloudapi.cn:20000/api/Requests/Update");//webconfig里
-                request.Method = "POST";
+                // Prepare web request... 
+                var modifyRequestUrl = ConfigurationManager.ConnectionStrings["ModifyRequestUrl"].ConnectionString;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(modifyRequestUrl); request.Method = "POST";
                 request.ContentType = "application/json";
                 modifyRequest.UpdateUser = "yuhan";
                 string modifyRequestjsontrans = JsonConvert.SerializeObject(modifyRequest);
@@ -65,16 +66,12 @@ namespace Phoenix
 
                 // Get response  
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
             }
             catch (Exception)
             {
                 throw;
             }
-
-
         }
-
     }
 
     public class SendForApproval
@@ -100,9 +97,9 @@ namespace Phoenix
         [JsonProperty]
         public int Priority { get; set; }//default 0: normal priority 1:High Priority2
         [JsonProperty]
-        public string FromEnterpriseId { get; set; }//谁发的，随便？
+        public string FromEnterpriseId { get; set; }//给死
         [JsonProperty]
-        public string OtherJsonDetails { get; set; }//我们的details放这里？
+        public string OtherJsonDetails { get; set; }//为空，不然手机没法解析
 
     }
 

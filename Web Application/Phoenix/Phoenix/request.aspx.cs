@@ -124,7 +124,7 @@ namespace Phoenix
                 DueDate = DateTime.Now.AddDays(1).ToString(),
                 Priority = GetPriority(),
                 FromEnterpriseId ="myte6666",
-                OtherJsonDetails ="No Other Json"
+                OtherJsonDetails =""
             };
         }
     }
