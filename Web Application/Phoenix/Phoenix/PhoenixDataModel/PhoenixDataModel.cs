@@ -13,7 +13,7 @@ namespace Phoenix.PhoenixDataModel
     public class RequestModel
     {
         private const string GetRequestById = "SELECT RE.RequestId,RE.RequestTitle,RE.RequestStatus,RE.RequestDetail,RE.Comments FROM REQUEST RE WHERE RE.REQUESTID = '{0}'";
-        private const string UpdateRequestToDb = "UPDATE REQUEST SET RequestStatus={0},Comments = '{1}' WHERE REQUESTID = '{2}'";
+        private const string UpdateRequestToDb = "UPDATE REQUEST SET RequestStatus={0},Comments = '{1}',EditDttm = '{2}' WHERE REQUESTID = '{2}'";
         private const string GetRequestListFromDb = "SELECT RequestId,RequestTitle,RequestStatus,RequestDetail,Comments from Request order by EditDttm desc";
         private const string InsertRequest = "INSERT INTO Request(RequestId,RequestTitle,RequestDetail,Comments,RequestStatus,EditDttm,Priority) VALUES('{0}','{1}','{2}','',{3},'{4}',{5})";
         public bool AddRequest(Request request)
@@ -55,7 +55,7 @@ namespace Phoenix.PhoenixDataModel
         public bool UpdateRequest(Request request)
         {
             var sqlBaseBuilder = new StringBuilder(UpdateRequestToDb);
-            var sqlStr = string.Format(sqlBaseBuilder.ToString(), (int)request.RequestStatus, request.Comments, request.RequestId);
+            var sqlStr = string.Format(sqlBaseBuilder.ToString(), (int)request.RequestStatus, request.Comments, DateTime.Now, request.RequestId);
             var updateOk = DBHelper.ExecuteNonQuery(sqlStr);
             return updateOk > 0;
         }

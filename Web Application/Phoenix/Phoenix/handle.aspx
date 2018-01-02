@@ -45,7 +45,7 @@
 	
 		</div>
         <br />
-            <asp:button id="btn_Approval" Text="Approval" runat="server" onclick="btn_Approval_Click" CssClass="buttons"/>
+            <asp:button id="btn_Approval" Text="Approve" runat="server" onclick="btn_Approval_Click" CssClass="buttons"/>
             <asp:button id="btn_Reject" text="Reject" runat="server" onclick="btn_Reject_Click" CssClass="buttons"/>
             <asp:button id="Close" text="Close" runat="server" onclick="btn_Close_Click" CssClass="buttons"/>
 

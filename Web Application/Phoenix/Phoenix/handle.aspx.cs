@@ -10,6 +10,7 @@ namespace Phoenix
 {
     public partial class handle : System.Web.UI.Page
     {
+        WebserviceHelper wshelper = new WebserviceHelper();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -44,11 +45,12 @@ namespace Phoenix
             EnableControls(request.RequestStatus);
         }
 
-
-
         protected void btn_Approval_Click(object sender, EventArgs e)
         {
             PassRequestStatus(RequestStatusDetail.APPROVED);
+
+            var modifyRequest = CreateModifyRequest(RequestStatusDetail.APPROVED);
+            wshelper.ModifyRequestIdHttpPost(modifyRequest);
 
             Response.Redirect("index.aspx");
         }
@@ -65,10 +67,21 @@ namespace Phoenix
         {
             PassRequestStatus(RequestStatusDetail.REJECTED);
 
+            var modifyRequest = CreateModifyRequest(RequestStatusDetail.REJECTED);
+            wshelper.ModifyRequestIdHttpPost(modifyRequest);
+
             Response.Redirect("index.aspx");
         }
 
+        private ModifyRequest CreateModifyRequest(RequestStatusDetail status)
+        {
+            var modifyRequest = new ModifyRequest();
+            modifyRequest.RequestId = txt_requestId.Text;
+            modifyRequest.Comments = txt_Comments.Text;
+            modifyRequest.ApprovalStatus = (int)status;
 
+            return modifyRequest;
+        }
 
         public void BindRequest(Request request)
         {

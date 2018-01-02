@@ -17,9 +17,13 @@ namespace Phoenix
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            var requestid = Guid.NewGuid().ToString();
-            RequestId.Text = requestid;
-            ErrorMessage.Text = "";
+            if (!IsPostBack)
+            {
+                var requestid = Guid.NewGuid().ToString();
+                RequestId.Text = requestid;
+                ErrorMessage.Text = "";
+            }
+
         }
 
         protected void SendForApprovalButtonClick(object sender, EventArgs e)

@@ -21,11 +21,11 @@ namespace Phoenix
     {
         public SendForApproval PostData { get; set; }
 
-        public string SendForApprovalHttpPost(SendForApproval sendForApproval)
+        public void SendForApprovalHttpPost(SendForApproval sendForApproval)
         {
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://mhe-ming-cluster.chinanorth.cloudapp.chinacloudapi.cn:20000/api/Requests");
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://mhe-ming-cluster.chinanorth.cloudapp.chinacloudapi.cn:20000/api/Requests");//webconfig里
                 request.Method = "POST";
                 request.ContentType = "application/json";
 
@@ -41,20 +41,6 @@ namespace Phoenix
                 writer.Flush();
 
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                string encoding = response.ContentEncoding;
-                if (encoding == null || encoding.Length < 1)
-                {
-                    encoding = "UTF-8"; //默认编码  
-                }
-                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding(encoding));
-                string retString = reader.ReadToEnd();
-
-                return retString;
-
-                //if (response.StatusCode == HttpStatusCode.OK)
-                //{
-                //    return "success!";
-                //}
 
             }
             catch (Exception)
@@ -68,7 +54,7 @@ namespace Phoenix
             try
             {
                 // Prepare web request...  
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://mhe-ming-cluster.chinanorth.cloudapp.chinacloudapi.cn:20000/api/Requests/Update");
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://mhe-ming-cluster.chinanorth.cloudapp.chinacloudapi.cn:20000/api/Requests/Update");//webconfig里
                 request.Method = "POST";
                 request.ContentType = "application/json";
                 modifyRequest.UpdateUser = "yuhan";
@@ -79,12 +65,7 @@ namespace Phoenix
 
                 // Get response  
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-                string content = reader.ReadToEnd();
-                Console.WriteLine(content);
-                Console.ReadLine();
 
-                //想返回什么？
             }
             catch (Exception)
             {
