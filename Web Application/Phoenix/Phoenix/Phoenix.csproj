@@ -74,6 +74,7 @@
     <Content Include="index.aspx" />
     <Content Include="packages.config" />
     <Content Include="MasterPage.Master" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
