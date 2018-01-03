@@ -14,7 +14,7 @@ namespace Phoniex.dbaccess
              get { 
                  if (connection == null) 
                  { 
-                     connection = new SqlConnection(ConfigurationManager.ConnectionStrings["LocalConnection"].ConnectionString);
+                     connection = new SqlConnection(ConfigurationManager.ConnectionStrings["AzureConnection"].ConnectionString);
                  } 
                  return connection; 
              } 
