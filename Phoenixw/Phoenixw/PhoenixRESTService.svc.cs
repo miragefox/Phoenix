@@ -63,7 +63,7 @@ namespace Phoenixw
                     {
                         sqlConnection.Open();
 
-                        string strSql = "UPDATE  Request  SET Comments=@comments,RequestStatus=@requestStatus,UpdateUser=@updateUser,EditDttm=@editDttm WHERE RequestId=@requestId";
+                        string strSql = "UPDATE  Request  SET Comments=@comments,RequestStatus=@requestStatus,EditDttm=@editDttm WHERE RequestId=@requestId";
                         SqlCommand cmd = new SqlCommand(strSql, sqlConnection);
                         SqlParameter parn = new SqlParameter("@requestId", requestId);
                         cmd.Parameters.Add(parn);

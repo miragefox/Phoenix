@@ -12,13 +12,7 @@ namespace Phoenixw
         [DataMember]
         public string RequestId { get; set; }
         [DataMember]
-        public string RequestTitle { get; set; }
-        [DataMember]
-        public string RequestDetail { get; set; }
-        [DataMember]
         public string Comments { get; set; }
-        [DataMember]
-        public string UpdateUser { get; set; }
         [DataMember]
         public Status Status { get; set; }
         [DataMember]
