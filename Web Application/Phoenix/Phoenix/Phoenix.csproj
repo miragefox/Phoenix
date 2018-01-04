@@ -84,8 +84,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="photo\accentureLogo_Login.jpg" />
-    <Content Include="photo\PhoenixHeader.png" />
     <Content Include="photo\phoenixLogo.png" />
+    <Content Include="photo\PhoenixHeader.png" />
     <Content Include="request.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
