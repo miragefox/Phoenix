@@ -41,7 +41,7 @@
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="250px" />
                     </asp:BoundField>
                     <asp:BoundField DataField="RequestTitle" HeaderText="RequestTitle">
-                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="500px" />
+                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="300px" />
                     </asp:BoundField>
                     <asp:BoundField DataField="RequestStatus" HeaderText="RequestStatus">
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="150px" />

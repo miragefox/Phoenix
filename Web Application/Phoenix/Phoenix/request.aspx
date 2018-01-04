@@ -78,7 +78,7 @@
             <asp:TextBox id="RequestDetails" textmode="MultiLine" runat="server" CssClass="textboxdetails"/>
         </div>
         <div runat="server" class="form">
-            <asp:RadioButtonList id="Priority" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow" CssClass="radiobutttons">
+            <asp:RadioButtonList id="Priority" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow">
             <asp:ListItem Selected="True">Default</asp:ListItem>
             <asp:ListItem>Low Importance</asp:ListItem>
             <asp:ListItem>High Importance</asp:ListItem>
