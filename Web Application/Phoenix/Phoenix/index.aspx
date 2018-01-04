@@ -35,16 +35,16 @@
     </style>
 </asp:Content>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="BodyContent" runat="server">
-            <asp:GridView  align="center" ID="RequestGridView"  runat="server" AutoGenerateColumns="False" Height="212px" OnRowDataBound="RequestGridView_RowDataBound" CellPadding="4" EnableModelValidation="True" Font-Size="Small"  Width="450px" BorderColor="#1d7eb1" BorderWidth="1px" >
+            <asp:GridView  align="center" ID="RequestGridView"  runat="server" AutoGenerateColumns="False" Height="212px" OnRowDataBound="RequestGridView_RowDataBound" CellPadding="4" EnableModelValidation="True" Font-Size="Small"  BorderColor="#1d7eb1" BorderWidth="1px" >
                 <Columns>
                     <asp:BoundField DataField="RequestId" HeaderText="RequestId">
-                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="250px" />
                     </asp:BoundField>
                     <asp:BoundField DataField="RequestTitle" HeaderText="RequestTitle">
-                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="500px" />
                     </asp:BoundField>
                     <asp:BoundField DataField="RequestStatus" HeaderText="RequestStatus">
-                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="150px" />
                     </asp:BoundField>
                 </Columns>
                 <FooterStyle BackColor="White" ForeColor="#000066" />
