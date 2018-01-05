@@ -20,7 +20,7 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 
 -- add new column
-ALTER TABLE Request ADD CreateDate datetime,DueDate datetime,ActionSoure varchar(20),BusinessCode varchar(20)
+ALTER TABLE Request ADD CreateDate datetime,DueDate datetime,ActionSource varchar(20),BusinessCode varchar(20)
 
 
 
