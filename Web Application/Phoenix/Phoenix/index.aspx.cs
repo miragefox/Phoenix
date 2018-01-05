@@ -79,13 +79,13 @@ namespace Phoenix
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 string Id;
-                Id = e.Row.Cells[7].Text;
+                Id = e.Row.Cells[6].Text;
                 if (Id != "&nbsp;")
                 {
                     e.Row.Attributes.Add("onclick", "ItemOver(this,'" + Id + "')");
                 }
             }
-            e.Row.Cells[7].Visible = false;
+            e.Row.Cells[6].Visible = false;
         }
 
         protected void AddNewButton_Click(object sender, EventArgs e)
@@ -108,7 +108,7 @@ namespace Phoenix
         }
         private void AutoAddId(GridViewRowEventArgs e)
         {
-            if (e.Row.RowIndex != -1 && e.Row.Cells[2].Text != "RequestStatus")//自动编号作序号
+            if (e.Row.RowIndex != -1 && e.Row.Cells[2].Text != "&nbsp;")//自动编号作序号
             {
                 int id = e.Row.RowIndex + 1;
                 e.Row.Cells[0].Text = id.ToString();

@@ -60,6 +60,7 @@
                     <asp:BoundField DataField="ActionSource" HeaderText="ActionSource" >
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="100px" />
                     </asp:BoundField>
+                    <asp:BoundField DataField="RequestId" HeaderText="RequestId" />
                     <asp:TemplateField HeaderText="Action" ItemStyle-Width="120px">
                         <ItemTemplate>
                             <asp:LinkButton ID="EditButton" CssClass="LinkButton" runat="server" OnClick="EditButton_Click" Visible="False">Edit</asp:LinkButton>
@@ -67,7 +68,6 @@
                         </ItemTemplate>
 <ItemStyle Width="120px"></ItemStyle>
                     </asp:TemplateField>
-                    <asp:BoundField DataField="RequestId" HeaderText="RequestId" />
                 </Columns>
                 <FooterStyle BackColor="White" ForeColor="#000066" />
                 <HeaderStyle BackColor="#1d7eb1" Font-Bold="False" ForeColor="white" />
