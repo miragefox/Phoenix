@@ -12,9 +12,9 @@ namespace Phoenix.PhoenixDataModel
 {
     public class RequestModel
     {
-        private const string GetRequestById = "SELECT RE.RequestId,RE.RequestTitle,RE.RequestStatus,RE.RequestDetail,RE.Comments,RE.CreateDate,RE.DueDate,RE.ActionSource,RE.BusinessCode FROM REQUEST RE WHERE RE.REQUESTID = '{0}'";
+        private const string GetRequestById = "SELECT RE.RequestId,RE.RequestTitle,RE.RequestStatus,RE.RequestDetail,RE.Comments,RE.CreateDate,RE.DueDate,RE.ActionSource,RE.BusinessCode,RE.EditDttm FROM REQUEST RE WHERE RE.REQUESTID = '{0}'";
         private const string UpdateRequestToDb = "UPDATE REQUEST SET RequestStatus={0},Comments = '{1}',EditDttm = '{2}' WHERE REQUESTID = '{3}'";
-        private const string GetRequestListFromDb = "SELECT RequestId,RequestTitle,RequestStatus,RequestDetail,Comments,CreateDate,DueDate,ActionSource,BusinessCode from Request order by EditDttm desc";
+        private const string GetRequestListFromDb = "SELECT RequestId,RequestTitle,RequestStatus,RequestDetail,Comments,CreateDate,DueDate,ActionSource,BusinessCode,EditDttm from Request order by EditDttm desc";
         private const string InsertRequest = "INSERT INTO Request(RequestId,RequestTitle,RequestDetail,Comments,RequestStatus,EditDttm,Priority) VALUES('{0}','{1}','{2}','',{3},'{4}',{5},'{6}','{7}','{8}','{9}')";
         public bool AddRequest(Request request)
         {
@@ -71,6 +71,7 @@ namespace Phoenix.PhoenixDataModel
             request.DueDate = Convert.ToDateTime(dataRow[6]);
             request.ActionSource = dataRow[7].ToString();
             request.BusinessCode = dataRow[8].ToString();
+            request.EditDttm = Convert.ToDateTime(dataRow[9]);
 
             return request;
         }
@@ -83,7 +84,7 @@ namespace Phoenix.PhoenixDataModel
         public string RequestDetail { get; set; }
         public string Comments { get; set; }
         public RequestStatusDetail RequestStatus { get; set; }
-        public DateTime EditTime { get; set; }
+        public DateTime EditDttm { get; set; }
         public int Priority { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime DueDate { get; set; }
