@@ -22,6 +22,7 @@ namespace Phoenix
                 GetData();
             }
         }
+
         protected void GetData()
         {
             RequestModel requestModel = new RequestModel();
@@ -32,15 +33,18 @@ namespace Phoenix
 
             if (RequestGridView.Rows.Count == 0)
             {
-                // 当DataSource为空时绑定之，否则Gridview控件就不能显示
                 DataTable dt = new DataTable();
+                // 当DataSource为空时绑定之，否则Gridview控件就不能显示
                 DataRow dr;
-                for (int i = 0; i < RequestGridView.Columns.Count; i++)
+                for (int i = 0; i < RequestGridView.Columns.Count - 1; i++)
                 {
                     dt.Columns.Add(new DataColumn(((BoundField)RequestGridView.Columns[i]).DataField, typeof(string)));
                     dr = dt.NewRow();
                     dr[i] = "&nbsp;";
                 }
+                dt.Columns.Add("Action");
+                dr = dt.NewRow();
+                dr[6] = "&nbsp;";
                 for (int j = 0; j < pageSize - RequestGridView.Rows.Count; j++)
                 {
                     dr = dt.NewRow();
@@ -55,7 +59,7 @@ namespace Phoenix
                 {
                     int rowIndex = RequestGridView.Rows.Count + i + 1;
                     GridViewRow row = new GridViewRow(rowIndex, -1, DataControlRowType.EmptyDataRow, DataControlRowState.Normal);
-                    for (int j = 0; j < RequestGridView.Columns.Count; j++)
+                    for (int j = 0; j < RequestGridView.Columns.Count-1; j++)
                     {
                         TableCell cell = new TableCell();
                         cell.Text = "&nbsp;";
@@ -68,19 +72,20 @@ namespace Phoenix
             }
         }
 
-        protected void DetailsButton_Click(object sender, EventArgs e)
+        protected void RequestGridView_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            string id = HiddenId.Value;
-            if (id == "" || id == "&nbsp;")
+            AutoAddId(e);
+            LinkButtonVisiable(e);
+            if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                ErrorMessage.Text = "You should select at least one record.";
-                GetData();
+                string Id;
+                Id = e.Row.Cells[7].Text;
+                if (Id != "&nbsp;")
+                {
+                    e.Row.Attributes.Add("onclick", "ItemOver(this,'" + Id + "')");
+                }
             }
-            else
-            {
-                Session["id"] = id;
-                Response.Redirect("handle.aspx");
-            }
+            e.Row.Cells[7].Visible = false;
         }
 
         protected void AddNewButton_Click(object sender, EventArgs e)
@@ -88,17 +93,54 @@ namespace Phoenix
             Response.Redirect("request.aspx");
         }
 
-        protected void RequestGridView_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void SendNotificationButton_Click(object sender, EventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.DataRow)
+            Session["id"] = "";
+            Session["BusinessCode"] = "A01";
+            Response.Redirect("request.aspx");
+        }
+
+        protected void SendForApproval_Click(object sender, EventArgs e)
+        {
+            Session["id"] = "";
+            Session["BusinessCode"] = "A02";
+            Response.Redirect("request.aspx");
+        }
+        private void AutoAddId(GridViewRowEventArgs e)
+        {
+            if (e.Row.RowIndex != -1 && e.Row.Cells[2].Text != "RequestStatus")//自动编号作序号
             {
-                string Id;
-                Id = e.Row.Cells[0].Text;
-                if (Id != "&nbsp;")
-                {
-                    e.Row.Attributes.Add("onclick", "ItemOver(this,'" + Id + "')");
-                }
+                int id = e.Row.RowIndex + 1;
+                e.Row.Cells[0].Text = id.ToString();
             }
+        }
+        private void LinkButtonVisiable(GridViewRowEventArgs e)
+        {
+            if (e.Row.Cells[2].Text == "COMPLETED" || e.Row.Cells[2].Text == "REJECTED" || e.Row.Cells[2].Text == "APPROVED")
+            {
+                e.Row.FindControl("EditButton").Visible = true;
+            }
+            if (e.Row.Cells[2].Text == "PENDINGREVIEW")
+            {
+                e.Row.FindControl("EditButton").Visible = true;
+                e.Row.FindControl("DetailsButton").Visible = true;
+            }
+        }
+
+        protected void EditButton_Click(object sender, EventArgs e)
+        {
+            string id = HiddenId.Value;
+            Session["id"] = id;
+            Session["BusinessCode"] = "";
+            Response.Redirect("request.aspx");
+        }
+
+        protected void DetailsButton_Click(object sender, EventArgs e)
+        {
+            string id = HiddenId.Value;
+            Session["id"] = id;
+            Session["BusinessCode"] = "";
+            Response.Redirect("handle.aspx");
         }
     }
 }

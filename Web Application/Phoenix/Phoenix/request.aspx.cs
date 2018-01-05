@@ -68,7 +68,7 @@ namespace Phoenix
                 RequestTitle = RequestTitle.Text,
                 RequestDetail = RequestDetails.Text,
                 RequestStatus = requestStatus,
-                EditTime = DateTime.Now,
+                EditDttm = DateTime.Now,
                 Priority = GetPriority()
             });
             return addRequestFeedback;

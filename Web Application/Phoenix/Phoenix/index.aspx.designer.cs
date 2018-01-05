@@ -40,21 +40,21 @@ namespace Phoenix {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden HiddenId;
         
         /// <summary>
-        /// DetailsButton control.
+        /// SendNotificationButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button DetailsButton;
+        protected global::System.Web.UI.WebControls.Button SendNotificationButton;
         
         /// <summary>
-        /// AddNewButton control.
+        /// SendForApprovalButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AddNewButton;
+        protected global::System.Web.UI.WebControls.Button SendForApprovalButton;
     }
 }
