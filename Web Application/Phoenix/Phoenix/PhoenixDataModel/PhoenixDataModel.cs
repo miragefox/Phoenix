@@ -12,14 +12,14 @@ namespace Phoenix.PhoenixDataModel
 {
     public class RequestModel
     {
-        private const string GetRequestById = "SELECT RE.RequestId,RE.RequestTitle,RE.RequestStatus,RE.RequestDetail,RE.Comments FROM REQUEST RE WHERE RE.REQUESTID = '{0}'";
+        private const string GetRequestById = "SELECT RE.RequestId,RE.RequestTitle,RE.RequestStatus,RE.RequestDetail,RE.Comments,RE.CreateDate,RE.DueDate,RE.ActionSource,RE.BusinessCode FROM REQUEST RE WHERE RE.REQUESTID = '{0}'";
         private const string UpdateRequestToDb = "UPDATE REQUEST SET RequestStatus={0},Comments = '{1}',EditDttm = '{2}' WHERE REQUESTID = '{3}'";
-        private const string GetRequestListFromDb = "SELECT RequestId,RequestTitle,RequestStatus,RequestDetail,Comments from Request order by EditDttm desc";
-        private const string InsertRequest = "INSERT INTO Request(RequestId,RequestTitle,RequestDetail,Comments,RequestStatus,EditDttm,Priority) VALUES('{0}','{1}','{2}','',{3},'{4}',{5})";
+        private const string GetRequestListFromDb = "SELECT RequestId,RequestTitle,RequestStatus,RequestDetail,Comments,CreateDate,DueDate,ActionSource,BusinessCode from Request order by EditDttm desc";
+        private const string InsertRequest = "INSERT INTO Request(RequestId,RequestTitle,RequestDetail,Comments,RequestStatus,EditDttm,Priority) VALUES('{0}','{1}','{2}','',{3},'{4}',{5},'{6}','{7}','{8}','{9}')";
         public bool AddRequest(Request request)
         {
             var sqlBaseBuilder = new StringBuilder(InsertRequest);
-            var sqlStr = string.Format(sqlBaseBuilder.ToString(), request.RequestId, request.RequestTitle, request.RequestDetail, (int)request.RequestStatus, DateTime.Now,request.Priority);
+            var sqlStr = string.Format(sqlBaseBuilder.ToString(), request.RequestId, request.RequestTitle, request.RequestDetail, (int)request.RequestStatus, DateTime.Now, request.Priority, DateTime.Now, request.DueDate, request.ActionSource, request.ActionSource);
             var addOk = DBHelper.ExecuteNonQuery(sqlStr);
             return addOk > 0;
         }
@@ -66,7 +66,12 @@ namespace Phoenix.PhoenixDataModel
             request.RequestTitle = dataRow[1].ToString();
             request.RequestStatus = (RequestStatusDetail)Enum.ToObject(typeof(RequestStatusDetail), Convert.ToUInt32(dataRow[2]));
             request.RequestDetail = dataRow[3].ToString();
-            request.Comments= dataRow[4].ToString();
+            request.Comments = dataRow[4].ToString();
+            request.CreateDate = Convert.ToDateTime(dataRow[5]);
+            request.DueDate = Convert.ToDateTime(dataRow[6]);
+            request.ActionSource = dataRow[7].ToString();
+            request.BusinessCode = dataRow[8].ToString();
+
             return request;
         }
 
@@ -80,5 +85,10 @@ namespace Phoenix.PhoenixDataModel
         public RequestStatusDetail RequestStatus { get; set; }
         public DateTime EditTime { get; set; }
         public int Priority { get; set; }
+        public DateTime CreateDate { get; set; }
+        public DateTime DueDate { get; set; }
+        public string ActionSource { get; set; }
+        public string BusinessCode { get; set; }
+
     }
 }
