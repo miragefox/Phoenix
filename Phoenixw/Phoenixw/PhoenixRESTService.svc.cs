@@ -32,7 +32,8 @@ namespace Phoenixw
                     var comments = item.Comments;
                     var requestStatus = item.Status;
                     var editDttm = DateTime.Now;
-                    UpdateRequestToDB(requestId, comments, requestStatus, editDttm);
+                    var actionSource ="Mobile";
+                    UpdateRequestToDB(requestId, comments, requestStatus, editDttm, actionSource);
                 }
              }
 
@@ -45,7 +46,7 @@ namespace Phoenixw
         }
 
         //更新数据库
-        private void UpdateRequestToDB(string requestId, string comments, Status requestStatus, DateTime editDttm)
+        private void UpdateRequestToDB(string requestId, string comments, Status requestStatus, DateTime editDttm, String actionSource)
         {
             WebOperationContext woc = WebOperationContext.Current;
             try
@@ -63,7 +64,7 @@ namespace Phoenixw
                     {
                         sqlConnection.Open();
 
-                        string strSql = "UPDATE  Request  SET Comments=@comments,RequestStatus=@requestStatus,EditDttm=@editDttm WHERE RequestId=@requestId";
+                        string strSql = "UPDATE  Request  SET Comments=@comments,RequestStatus=@requestStatus,EditDttm=@editDttm,ActionSource=@actionSource WHERE RequestId=@requestId";
                         SqlCommand cmd = new SqlCommand(strSql, sqlConnection);
                         SqlParameter parn = new SqlParameter("@requestId", requestId);
                         cmd.Parameters.Add(parn);
@@ -73,6 +74,8 @@ namespace Phoenixw
                         cmd.Parameters.Add(parre);
                         SqlParameter parra = new SqlParameter("@editDttm", editDttm);
                         cmd.Parameters.Add(parra);
+                        SqlParameter parrd = new SqlParameter("@actionSource", actionSource);
+                        cmd.Parameters.Add(parrd);
                         //result接受受影响的行数，也就是说大于0的话表示添加成功
                         int result = cmd.ExecuteNonQuery();
                         cmd.Dispose();

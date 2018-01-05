@@ -17,7 +17,8 @@ namespace Phoenixw
         public Status Status { get; set; }
         [DataMember]
         public DateTime EditDttm { get; set; }
-    }
+        public String ActionSource{ get; set; }
+}
     public enum Status
     {
         Pending,
