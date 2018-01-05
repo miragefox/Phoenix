@@ -20,8 +20,6 @@ namespace Phoenix
 {
     public class WebserviceHelper
     {
-        public SendForApproval PostData { get; set; }
-
         public void SendForApprovalHttpPost(SendForApproval sendForApproval)
         {
             try
@@ -81,9 +79,9 @@ namespace Phoenix
         [JsonProperty]
         public string AirId { get; set; }//固定6666
         [JsonProperty]
-        public string BusinessCode { get; set; } //原因，固定A01不需要update A02需要
+        public string BusinessCode { get; set; } //原因，固定A01send for approval A02notification
         [JsonProperty]
-        public List<long> ToPeople { get; set; }//发给谁personalnum随便给？
+        public List<long> ToPeople { get; set; }//发给谁personalnum随便给
         [JsonProperty]
         public string Title { get; set; }
         [JsonProperty]
@@ -93,9 +91,9 @@ namespace Phoenix
     public class RequestDetail
     {
         [JsonProperty]
-        public string DueDate { get; set; }//截止时间，固定的当前+5或随机
+        public string DueDate { get; set; }//页面传值
         [JsonProperty]
-        public int Priority { get; set; }//default 0: normal priority 1:High Priority2
+        public int Priority { get; set; }//default 0: normal priority 1
         [JsonProperty]
         public string FromEnterpriseId { get; set; }//给死
         [JsonProperty]
@@ -118,5 +116,13 @@ namespace Phoenix
     //public class OtherJsonDetails
     //{
 
+    //}
+
+    //public enum ApprovalStatus//yongming的
+    //{
+    //    Pending,
+    //    Approve,
+    //    Reject,
+    //    Ignore
     //}
 }
