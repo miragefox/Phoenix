@@ -1,6 +1,19 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="request.aspx.cs" Inherits="Phoenix.request" MasterPageFile="~/MasterPage.Master"%>
 
 <asp:Content ID="head" ContentPlaceHolderID="head" runat="server">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI DueDatePicker - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+      $( "#DueDatePicker" ).datepicker();
+  } );
+  </script>
+
     <style>
         .form {
          width: 650px;
@@ -21,8 +34,6 @@
         width: 100px;
         display:inline-block;
         text-align:left;
-        background-color:#077ac3;
-        color:white;
         height: 20px;
     }
     .labledetails {
@@ -30,9 +41,7 @@
         height: 200px;
         display:inline-block;
         text-align:left;
-        color:white;
         vertical-align:top;
-        background-color:#077ac3;
     }
     .textbox {
         width: 400px;
@@ -78,15 +87,14 @@
             <asp:TextBox id="RequestDetails" textmode="MultiLine" runat="server" CssClass="textboxdetails"/>
         </div>
         <div runat="server" class="form">
-            <asp:RadioButtonList id="Priority" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow">
-            <asp:ListItem Selected="True">Default</asp:ListItem>
-            <asp:ListItem>Low Importance</asp:ListItem>
-            <asp:ListItem>High Importance</asp:ListItem>
-           </asp:RadioButtonList>  
+           <asp:label text="Due Date" runat="server" CssClass="lable" />
+           <input type="text" id="DueDatePicker" name="DueDate" class="textbox"/>
+        </div>
+        <div runat="server" class="form">
+            <asp:checkbox id="Priority" runat="server" TextAlign="Left"  Text="Important" /> 
         </div>
     </div>
-        <asp:Button ID="SendForApprovalButton" runat="server" CssClass="buttons" Text="Send for Approval" OnClick="SendForApprovalButtonClick" />
-        <asp:Button ID="NotifyButton" runat="server" CssClass="buttons" Text="Notify" OnClick="NotifyButtonClick" />          
+        <asp:Button ID="SendForApprovalButton" runat="server" CssClass="buttons" OnClick="SendForApprovalButtonClick" />         
         <asp:Button ID="CancelButton" runat="server" CssClass="buttons" Text="Cancel" OnClick="CancelButtonClick" /> 
 
 </asp:Content>

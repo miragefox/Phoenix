@@ -55,7 +55,7 @@ namespace Phoenix {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList Priority;
+        protected global::System.Web.UI.WebControls.CheckBox Priority;
         
         /// <summary>
         /// SendForApprovalButton control.
@@ -65,15 +65,6 @@ namespace Phoenix {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button SendForApprovalButton;
-        
-        /// <summary>
-        /// NotifyButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button NotifyButton;
         
         /// <summary>
         /// CancelButton control.

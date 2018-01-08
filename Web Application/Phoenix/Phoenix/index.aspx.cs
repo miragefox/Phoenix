@@ -96,14 +96,14 @@ namespace Phoenix
         protected void SendNotificationButton_Click(object sender, EventArgs e)
         {
             Session["id"] = "";
-            Session["BusinessCode"] = "A01";
+            Session["BusinessCode"] = "A02";
             Response.Redirect("request.aspx");
         }
 
         protected void SendForApproval_Click(object sender, EventArgs e)
         {
             Session["id"] = "";
-            Session["BusinessCode"] = "A02";
+            Session["BusinessCode"] = "A01";
             Response.Redirect("request.aspx");
         }
         private void AutoAddId(GridViewRowEventArgs e)

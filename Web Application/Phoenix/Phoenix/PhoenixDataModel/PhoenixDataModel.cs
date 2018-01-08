@@ -15,11 +15,11 @@ namespace Phoenix.PhoenixDataModel
         private const string GetRequestById = "SELECT RE.RequestId,RE.RequestTitle,RE.RequestStatus,RE.RequestDetail,RE.Comments,RE.CreateDate,RE.DueDate,RE.ActionSource,RE.BusinessCode,RE.EditDttm FROM REQUEST RE WHERE RE.REQUESTID = '{0}'";
         private const string UpdateRequestToDb = "UPDATE REQUEST SET RequestStatus={0},Comments = '{1}',EditDttm = '{2}' WHERE REQUESTID = '{3}'";
         private const string GetRequestListFromDb = "SELECT RequestId,RequestTitle,RequestStatus,RequestDetail,Comments,CreateDate,DueDate,ActionSource,BusinessCode,EditDttm from Request order by EditDttm desc";
-        private const string InsertRequest = "INSERT INTO Request(RequestId,RequestTitle,RequestDetail,Comments,RequestStatus,EditDttm,Priority) VALUES('{0}','{1}','{2}','',{3},'{4}',{5},'{6}','{7}','{8}','{9}')";
+        private const string InsertRequest = "INSERT INTO Request(RequestId,RequestTitle,RequestDetail,Comments,RequestStatus,EditDttm,Priority,CreateDate,DueDate,ActionSource,BusinessCode) VALUES('{0}','{1}','{2}','',{3},'{4}',{5},'{6}','{7}','{8}','{9}')";
         public bool AddRequest(Request request)
         {
             var sqlBaseBuilder = new StringBuilder(InsertRequest);
-            var sqlStr = string.Format(sqlBaseBuilder.ToString(), request.RequestId, request.RequestTitle, request.RequestDetail, (int)request.RequestStatus, DateTime.Now, request.Priority, DateTime.Now, request.DueDate, request.ActionSource, request.ActionSource);
+            var sqlStr = string.Format(sqlBaseBuilder.ToString(), request.RequestId, request.RequestTitle, request.RequestDetail, (int)request.RequestStatus, DateTime.Now, request.Priority, DateTime.Now, request.DueDate, request.ActionSource, request.BusinessCode);
             var addOk = DBHelper.ExecuteNonQuery(sqlStr);
             return addOk > 0;
         }
