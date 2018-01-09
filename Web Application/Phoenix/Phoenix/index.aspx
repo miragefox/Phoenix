@@ -61,10 +61,10 @@
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="100px" />
                     </asp:BoundField>
                     <asp:BoundField DataField="RequestId" HeaderText="RequestId" />
-                    <asp:TemplateField HeaderText="Action" ItemStyle-Width="120px">
+                    <asp:TemplateField ItemStyle-Width="120px">
                         <ItemTemplate>
                             <asp:LinkButton ID="EditButton" CssClass="LinkButton" runat="server" OnClick="EditButton_Click" Visible="False">Edit</asp:LinkButton>
-                            <asp:LinkButton ID="DetailsButton" CssClass="LinkButton" runat="server" OnClick="DetailsButton_Click" Visible="False">Details</asp:LinkButton>
+                            <asp:LinkButton ID="DetailsButton" CssClass="LinkButton" runat="server" OnClick="DetailsButton_Click" Visible="False">Action</asp:LinkButton>
                         </ItemTemplate>
 <ItemStyle Width="120px"></ItemStyle>
                     </asp:TemplateField>
@@ -79,8 +79,7 @@
                 <SortedDescendingCellStyle BackColor="#CAC9C9" />
                 <SortedDescendingHeaderStyle BackColor="#00547E" />
             </asp:GridView>
-            <div><asp:Label ID="ErrorMessage" runat="server" Font-Size="Medium" ForeColor="Red" Text="" Visible="true" Height="5px"></asp:Label></div>
             <input type="hidden" id="HiddenId" name="HiddenId" runat="server"/>
-            <asp:Button CssClass="IndexButton" ID="SendNotificationButton" runat="server" OnClick="SendNotificationButton_Click" Text="Send Notification"/>
-            <asp:Button CssClass="IndexButton" ID="SendForApprovalButton" runat="server" Text="Send For Approval" OnClick="SendForApproval_Click" />
+            <asp:Button CssClass="IndexButton" ID="SendNotificationButton" runat="server" OnClick="SendNotificationButton_Click" Text="Create Notification"/>
+            <asp:Button CssClass="IndexButton" ID="SendForApprovalButton" runat="server" Text="Create Request" OnClick="SendForApproval_Click" />
 </asp:Content>
