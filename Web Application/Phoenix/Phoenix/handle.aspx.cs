@@ -43,6 +43,7 @@ namespace Phoenix
             Request request = requestmodel.FindRequestById(requestId);
             BindRequest(request);
             EnableControls(request.RequestStatus);
+            ShowImage(request);
         }
 
         protected void btn_Approval_Click(object sender, EventArgs e)
@@ -85,16 +86,35 @@ namespace Phoenix
 
         public void BindRequest(Request request)
         {
+           
             txt_requestId.Text = request.RequestId;
             txt_Title.Text = request.RequestTitle;
             txt_Details.Text = request.RequestDetail;
             txt_Comments.Text = request.Comments;
             txt_status.Text = request.RequestStatus.ToString();
+            txt_SendDate.Text = request.CreateDate.ToString();
+            txt_DueDate.Text = request.DueDate.ToString();
+         
           }
+        public void ShowImage(Request request) {
+            if (0 == request.Priority)
+            {
+                Image1.Visible = true;
+            }
+            else
+            {
+                Image1.Visible = false;
+            }
+        }
 
         protected void btn_Close_Click(object sender, EventArgs e)
         {
             Response.Redirect("index.aspx");
+        }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
