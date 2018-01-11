@@ -12,9 +12,10 @@ namespace Phoenix.PhoenixDataModel
 {
     public class RequestModel
     {
-        private const string GetRequestById = "SELECT RE.RequestId,RE.RequestTitle,RE.RequestStatus,RE.RequestDetail,RE.Comments,RE.CreateDate,RE.DueDate,RE.ActionSource,RE.BusinessCode,RE.EditDttm FROM REQUEST RE WHERE RE.REQUESTID = '{0}'";
+        private const string GetRequestById = "SELECT RE.RequestId,RE.RequestTitle,RE.RequestStatus,RE.RequestDetail,RE.Comments,RE.CreateDate,RE.DueDate,RE.ActionSource,RE.BusinessCode,RE.EditDttm,RE.Priority FROM REQUEST RE WHERE RE.REQUESTID = '{0}'";
         private const string UpdateRequestToDb = "UPDATE REQUEST SET RequestStatus={0},Comments = '{1}',EditDttm = '{2}' WHERE REQUESTID = '{3}'";
-        private const string GetRequestListFromDb = "SELECT RequestId,RequestTitle,RequestStatus,RequestDetail,Comments,CreateDate,DueDate,ActionSource,BusinessCode,EditDttm from Request order by EditDttm desc";
+        private const string UpdateRequestForEidtToDb = "UPDATE REQUEST SET RequestTitle='{0}',RequestDetail = '{1}',EditDttm = '{2}',Priority = '{3}',DueDate = '{4}' WHERE REQUESTID = '{5}'";
+        private const string GetRequestListFromDb = "SELECT RequestId,RequestTitle,RequestStatus,RequestDetail,Comments,CreateDate,DueDate,ActionSource,BusinessCode,EditDttm,Priority from Request order by EditDttm desc";
         private const string InsertRequest = "INSERT INTO Request(RequestId,RequestTitle,RequestDetail,Comments,RequestStatus,EditDttm,Priority,CreateDate,DueDate,ActionSource,BusinessCode) VALUES('{0}','{1}','{2}','',{3},'{4}',{5},'{6}','{7}','{8}','{9}')";
         public bool AddRequest(Request request)
         {
@@ -59,6 +60,13 @@ namespace Phoenix.PhoenixDataModel
             var updateOk = DBHelper.ExecuteNonQuery(sqlStr);
             return updateOk > 0;
         }
+        public bool UpdateRequestForEdit(Request request)
+        {
+            var sqlBaseBuilder = new StringBuilder(UpdateRequestForEidtToDb);
+            var sqlStr = string.Format(sqlBaseBuilder.ToString(), request.RequestTitle, request.RequestDetail, DateTime.Now,request.Priority,request.DueDate, request.RequestId);
+            var updateOk = DBHelper.ExecuteNonQuery(sqlStr);
+            return updateOk > 0;
+        }
         public Request GenerateRequest(DataRow dataRow)
         {
             Request request = new Request();
@@ -72,7 +80,7 @@ namespace Phoenix.PhoenixDataModel
             request.ActionSource = dataRow[7].ToString();
             request.BusinessCode = dataRow[8].ToString();
             request.EditDttm = Convert.ToDateTime(dataRow[9]);
-
+            request.Priority = Convert.ToInt32(dataRow[10]);
             return request;
         }
 

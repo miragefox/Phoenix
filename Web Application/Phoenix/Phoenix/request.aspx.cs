@@ -22,13 +22,25 @@ namespace Phoenix
             if (!IsPostBack)
             {
                 ErrorMessage.Text = "";
-                DisplayPage(requestId, busiessCode);
+                DisplayPage(requestId);
             }
         }
 
-        public void DisplayPage(string requestId, string busiessCode)
+        private bool editRequest()
         {
-            if (requestId != "")
+            return Session["id"].ToString() != "" ? true : false;
+        }
+        private bool createNotify()
+        {
+            return Session["BusinessCode"].ToString() == "A02" ? true : false;
+        }
+        private bool createRequest()
+        {
+            return Session["BusinessCode"].ToString() == "A01" ? true : false;
+        }
+        public void DisplayPage(string requestId)
+        {
+            if (editRequest())
             {
                 SendForApprovalButton.Text = "Send for Approval";
                 Request request = requestmodel.FindRequestById(requestId);
@@ -38,24 +50,23 @@ namespace Phoenix
             {
                 var requestid = Guid.NewGuid().ToString();
                 RequestId.Text = requestid;
-                if (busiessCode == "A01")
+                if (createRequest())
                 {
                     SendForApprovalButton.Text = "Send for Approval";
                 }
-                if (busiessCode == "A02")
+                if (createNotify())
                 {
-                    SendForApprovalButton.Text = "Send Notify";
+                    SendForApprovalButton.Text = "Send";
                 }
             }
         }
-
         public void BindRequest(Request request)
         {
             RequestId.Text = request.RequestId;
             RequestTitle.Text = request.RequestTitle;
             RequestDetails.Text = request.RequestDetail;
             //DueDatePicker.Value = request.DueDate.ToString();
-            Priority.Checked = request.Priority == 0 ? true : false;
+            Priority.Checked = request.Priority == 1 ? true : false;
         }
         protected void SendForApprovalButtonClick(object sender, EventArgs e)
         {
@@ -66,59 +77,52 @@ namespace Phoenix
             }
             else
             {
-                bool addRequestFeedback = SaveNewRequest(GetRequestStatus(), "A01");
-                ReturnFeedback(addRequestFeedback);
-                CallWebservice("A01");
+                if (editRequest())
+                {
+                    UpdateRequest();
+                    CallWebservice("A01");
+                }
+                if (createRequest())
+                {
+                    SaveNewRequestOrNotify(RequestStatusDetail.PENDINGREVIEW, "A01");
+                    CallWebservice("A01");
+                }
+                if (createNotify())
+                {
+                    SaveNewRequestOrNotify(RequestStatusDetail.COMPLETED, "A02");
+                    CallWebservice("A02");
+                }
                 Response.Redirect("index.aspx");
             }
-        }
-        protected void NotifyButtonClick(object sender, EventArgs e)
-        {
-            if (RequestTitle.Text == "" || RequestDetails.Text == "" || Request.Form["DueDate"] == "")
-            {
-                ErrorMessage.Text = "Please fill out all required fields!";
-            }
-            else
-            {
-                bool addRequestFeedback = SaveNewRequest(GetRequestStatus(), "A02");
-                ReturnFeedback(addRequestFeedback);
-                CallWebservice("A02");
-                Response.Redirect("index.aspx");
-            }
-        }
-        public RequestStatusDetail GetRequestStatus()
-        {
-            RequestStatusDetail requestStatus = new RequestStatusDetail();
-            if (SendForApprovalButton.Text == "Send for Approval")
-            {
-                requestStatus = RequestStatusDetail.PENDINGREVIEW;
-            }
-            if (SendForApprovalButton.Text == "Send Notify")
-            {
-                requestStatus = RequestStatusDetail.COMPLETED;
-            }
-            return requestStatus;
-        }
+        }               
         protected void CancelButtonClick(object sender, EventArgs e)
         {
             Response.Redirect("index.aspx");
         }
-
-        public bool SaveNewRequest(RequestStatusDetail requeststatus, string businesscode)
+        public bool SaveNewRequestOrNotify(RequestStatusDetail requeststatus, string businesscode)
         {
             bool addRequestFeedback = requestmodel.AddRequest(new Request
             {
                 RequestId = RequestId.Text,
                 RequestTitle = RequestTitle.Text,
-                RequestDetail = RequestDetails.Text,
-                Comments = "",
+                RequestDetail = RequestDetails.Text, 
                 RequestStatus = requeststatus,
-                EditDttm = DateTime.Now,
                 Priority = GetPriority(),
-                CreateDate = DateTime.Now,
                 DueDate = Convert.ToDateTime(Request.Form["DueDate"]),
                 ActionSource = "Web",
                 BusinessCode = businesscode
+            });
+            return addRequestFeedback;
+        }
+        public bool UpdateRequest()
+        {
+            bool addRequestFeedback = requestmodel.UpdateRequestForEdit(new Request
+            {
+                RequestId = RequestId.Text,
+                RequestTitle = RequestTitle.Text,
+                RequestDetail = RequestDetails.Text,
+                Priority = GetPriority(),
+                DueDate = Convert.ToDateTime(Request.Form["DueDate"]),
             });
             return addRequestFeedback;
         }
@@ -160,9 +164,7 @@ namespace Phoenix
             return new SendForApproval
             {
                 RequestId = RequestId.Text,
-                AirId = "",
                 BusinessCode = code,
-                ToPeople = new List<long> { 666666 },
                 Title = RequestTitle.Text,
                 Details = SetRequestDetailInfo()
             };
@@ -173,7 +175,7 @@ namespace Phoenix
             {
                 DueDate = Request.Form["DueDate"],
                 Priority = GetPriority(),
-                FromEnterpriseId = "",
+                FromEnterpriseId = "myte6666",
                 OtherJsonDetails = ""
             };
         }
