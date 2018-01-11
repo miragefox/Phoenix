@@ -15,7 +15,7 @@ namespace Phoenixw
         //连接本地数据库
         //SqlConnection sqlConnection = new SqlConnection(@"server=.\SQL2014;database=Phoenix;integrated security=sspi");
         //Azure数据库
-        SqlConnection sqlConnection = new SqlConnection(@"Server=tcp:mhedb.database.chinacloudapi.cn,1433;Initial Catalog = zengguosqlservertest; Persist Security Info=False;uid=mheadmin;password=Dalian@123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout = 30;");
+        SqlConnection sqlConnection = new SqlConnection(@"Server=tcp:xueyangserver.database.chinacloudapi.cn,1433;Initial Catalog = xueyangDB; Persist Security Info=False;uid=MHEAdmin;password=Dalian@123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout = 30;");
 
         public void InsertRequest(PhoenixRequest phoenixRequest)
         {
