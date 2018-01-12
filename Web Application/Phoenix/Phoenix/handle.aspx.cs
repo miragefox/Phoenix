@@ -97,7 +97,7 @@ namespace Phoenix
          
           }
         public void ShowImage(Request request) {
-            if (0 == request.Priority)
+            if (1 == request.Priority)
             {
                 Image1.Visible = true;
             }
