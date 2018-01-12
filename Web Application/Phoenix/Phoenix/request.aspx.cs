@@ -131,11 +131,11 @@ namespace Phoenix
             int priority;
             switch (Priority.Checked)
             {
-                case false:
-                    priority = 0;
-                    break;
                 case true:
                     priority = 1;
+                    break;
+                case false:
+                    priority = 0;
                     break;
                 default:
                     priority = 0;

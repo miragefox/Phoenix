@@ -46,7 +46,7 @@
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="50px" />
                     </asp:BoundField>
                     <asp:BoundField DataField="RequestTitle" HeaderText="RequestTitle">
-                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="300px" />
+                    <ItemStyle  HorizontalAlign="Left" VerticalAlign="Middle" Width="200px" />
                     </asp:BoundField>
                     <asp:BoundField DataField="RequestStatus" HeaderText="RequestStatus">
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="150px" />
@@ -61,7 +61,7 @@
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="100px" />
                     </asp:BoundField>
                     <asp:BoundField DataField="RequestId" HeaderText="RequestId" />
-                    <asp:TemplateField ItemStyle-Width="120px">
+                    <asp:TemplateField ItemStyle-Width="120px" ItemStyle-HorizontalAlign="Left">
                         <ItemTemplate>
                             <asp:LinkButton ID="EditButton" CssClass="LinkButton" runat="server" OnClick="EditButton_Click" Visible="False">Edit</asp:LinkButton>
                             <asp:LinkButton ID="DetailsButton" CssClass="LinkButton" runat="server" OnClick="DetailsButton_Click" Visible="False">Action</asp:LinkButton>

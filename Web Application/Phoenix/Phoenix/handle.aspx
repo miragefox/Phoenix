@@ -25,7 +25,7 @@
 </style>
         <script>
             function changetext(id) {
-                id.innerHTML = "重要信息!";
+                id.innerHTML = "Important!";
             }
 </script>
        
