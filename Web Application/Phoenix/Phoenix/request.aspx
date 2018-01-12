@@ -51,12 +51,6 @@
          width: 400px;
          height: 200px;
      }
-    .priority {
-        display:inline-block;
-        height: 20px;
-        width: 405px;
-        text-align:left;
-    }
     .buttons {
             color:white;
             background-color:#077ac3; 
@@ -71,7 +65,7 @@
     .duedate {
         width: 200px;
         height: 20px;
-    }
+    }   
 
 </style>
 </asp:Content>
@@ -97,9 +91,11 @@
            <input type="text" id="DueDatePicker" name="DueDate" Class="duedate" />
            <asp:label runat="server" width="200px"/>
         </div>
-        <div runat="server" class="form">
-            <asp:label text="Priority" runat="server" CssClass="lable"  />
-            <asp:checkbox id="Priority" runat="server" CssClass="priority" /> 
+        <div runat="server" style="height:30px; width:275px;">
+            <asp:label text="Important" runat="server" CssClass="lable" />
+            <asp:checkbox id="Priority" runat="server" AutoPostBack="true" OnCheckedChanged="Priority_CheckedChanged" /> 
+            <asp:Image ID="ImportantImage" Visible="false" runat="server" height="15px" ImageUrl='~/photo/important.jpg'  />
+            <asp:label id="Blank" runat="server" width="15px"/>
         </div>
     </div>
         <asp:Button ID="SendForApprovalButton" runat="server" CssClass="buttons" OnClick="SendForApprovalButtonClick" />         

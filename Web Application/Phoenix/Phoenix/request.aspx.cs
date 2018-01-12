@@ -45,6 +45,7 @@ namespace Phoenix
                 SendForApprovalButton.Text = "Send for Approval";
                 Request request = requestmodel.FindRequestById(requestId);
                 BindRequest(request);
+
             }
             else
             {
@@ -67,6 +68,12 @@ namespace Phoenix
             RequestDetails.Text = request.RequestDetail;
             //DueDatePicker.Value = request.DueDate.ToString();
             Priority.Checked = request.Priority == 1 ? true : false;
+            ImageDisplay();
+        }
+
+        public void ImageDisplay()
+        {
+            ImportantImage.Visible = Priority.Checked == true ? true : false;
         }
         protected void SendForApprovalButtonClick(object sender, EventArgs e)
         {
@@ -94,7 +101,12 @@ namespace Phoenix
                 }
                 Response.Redirect("index.aspx");
             }
-        }               
+        }
+        protected void Priority_CheckedChanged(object sender, EventArgs e)
+        {
+            ImportantImage.Visible = Priority.Checked == true ? true : false;
+            Blank.Visible = Priority.Checked == true ? false : true;
+        }
         protected void CancelButtonClick(object sender, EventArgs e)
         {
             Response.Redirect("index.aspx");
