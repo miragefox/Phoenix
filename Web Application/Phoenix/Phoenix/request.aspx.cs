@@ -74,6 +74,7 @@ namespace Phoenix
         public void ImageDisplay()
         {
             ImportantImage.Visible = Priority.Checked == true ? true : false;
+            Blank.Visible = Priority.Checked == true ? false : true;
         }
         protected void SendForApprovalButtonClick(object sender, EventArgs e)
         {
