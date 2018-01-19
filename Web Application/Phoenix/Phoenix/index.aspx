@@ -7,17 +7,18 @@
         var objbeforeItem=null;
         var objbeforeItembackgroundColor=null;
     } 
-    function ItemOver(obj,id)
-    {
-        if(objbeforeItem)
-        {
-            objbeforeItem.style.backgroundColor = objbeforeItembackgroundColor;
+        function ItemOver(obj, id, Priority, DueDate) {
+            if (objbeforeItem) {
+                objbeforeItem.style.backgroundColor = objbeforeItembackgroundColor;
+            }
+            objbeforeItembackgroundColor = obj.style.backgroundColor;
+            objbeforeItem = obj;
+            obj.style.backgroundColor = "#F7CE90";
+            document.getElementById("BodyContent_HiddenId").value = id;
+            document.getElementById("BodyContent_PriorityHidden").value = Priority;
+            document.getElementById("<%=DueDateHidden.ClientID%>").value = DueDate;
         }
-        objbeforeItembackgroundColor = obj.style.backgroundColor;
-        objbeforeItem = obj;
-        obj.style.backgroundColor = "#F7CE90";
-        document.getElementById("BodyContent_HiddenId").value = id;
-        }
+
     </script>
      <style type="text/css">
         .IndexButton{
@@ -61,7 +62,10 @@
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="100px" />
                     </asp:BoundField>
                     <asp:BoundField DataField="RequestId" HeaderText="RequestId" />
+                    <asp:BoundField DataField="Priority" HeaderText="Priority" /> 
+                     <asp:BoundField DataField="DueDate" HeaderText="DueDate" /> 
                     <asp:TemplateField ItemStyle-Width="120px" ItemStyle-HorizontalAlign="Left">
+
                         <ItemTemplate>
                             <asp:LinkButton ID="EditButton" CssClass="LinkButton" runat="server" OnClick="EditButton_Click" Visible="False">Edit</asp:LinkButton>
                             <asp:LinkButton ID="DetailsButton" CssClass="LinkButton" runat="server" OnClick="DetailsButton_Click" Visible="False">Action</asp:LinkButton>
@@ -80,6 +84,8 @@
                 <SortedDescendingHeaderStyle BackColor="#00547E" />
             </asp:GridView>
             <input type="hidden" id="HiddenId" name="HiddenId" runat="server"/>
+            <input type="hidden" id="PriorityHidden" name="PriorityHidden" runat="server" /> 
+            <input type="hidden" id="DueDateHidden" name="DueDateHidden" runat="server" /> 
             <asp:Button CssClass="IndexButton" ID="SendNotificationButton" runat="server" OnClick="SendNotificationButton_Click" Text="Create Notification"/>
             <asp:Button CssClass="IndexButton" ID="SendForApprovalButton" runat="server" Text="Create Request" OnClick="SendForApproval_Click" />
 </asp:Content>

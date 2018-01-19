@@ -31,6 +31,24 @@ namespace Phoenix {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden HiddenId;
         
         /// <summary>
+        /// PriorityHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden PriorityHidden;
+        
+        /// <summary>
+        /// DueDateHidden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden DueDateHidden;
+        
+        /// <summary>
         /// SendNotificationButton control.
         /// </summary>
         /// <remarks>

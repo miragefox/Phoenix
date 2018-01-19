@@ -5,14 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>jQuery UI DueDatePicker - Default functionality</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
-  $( function() {
-      $( "#DueDatePicker" ).datepicker();
-  } );
-  </script>
+      $(function () {
+          $("#DueDatePicker").datepicker();
+          $('#DueDatePicker').val("<%=Session["DueDate"] %>") ;
+        Priority = '<%=Session["Priority"] %>';
+        if (Priority == 1) {
+            $("#checkbox").attr("checked", true);
+            $('#img').css("visibility", "visible");
+            $('#checkboxHidden').val("1");
+        } else {
+            $("#checkbox").attr("checked", false);
+            $('#img').css("visibility", "hidden");
+            $('#checkboxHidden').val("0");
+        }
+          //$('#DueDatePicker').click(function () {
+          //    document.getElementById("DueDatePicker").focus();
+          //});
+          //$('#DueDatePicker').change(function () {
+          //    document.getElementById("BodyContent_TextBoxDueDatePicker").value = $('#DueDatePicker').val();
+          //});
+
+    });
+    $(function () {
+        $('#checkbox').click(function () {
+            if ($('input[name="checkbox"]').prop("checked")) {
+                $('#img').css("visibility", "visible");
+                $('#checkboxHidden').val("1");
+            }
+            else {
+                $('#img').css("visibility", "hidden");
+                $('#checkboxHidden').val("0");
+            }
+        });
+      })
+
+      
+
+  </script> 
 
     <style>
         .form {
@@ -63,7 +95,7 @@
             margin-left:50px;
     }
     .duedate {
-        width: 200px;
+        width: 180px;
         height: 20px;
     }   
 
@@ -88,14 +120,17 @@
         </div>
         <div runat="server" class="form">
            <asp:label text="Due Date" runat="server" CssClass="lable" />
-           <input type="text" id="DueDatePicker" name="DueDate" Class="duedate" />
+           <%--<asp:TextBox  id="DueDatePicker"  CssClass="duedate" runat="server" />--%>
+           <input type="text" id="DueDatePicker" class="duedate" />
+            <%--<input type="text" id="HiddenDueDatePicker" runat="server" onclick="showDateButton()" visible="false"/>--%>
+            <%--<asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>--%>
            <asp:label runat="server" width="200px"/>
         </div>
-        <div runat="server" style="height:30px; width:275px;">
-            <asp:label text="Important" runat="server" CssClass="lable" />
-            <asp:checkbox id="Priority" runat="server" AutoPostBack="true" OnCheckedChanged="Priority_CheckedChanged" /> 
-            <asp:Image ID="ImportantImage" Visible="false" runat="server" height="15px" ImageUrl='~/photo/important.jpg'  />
-            <asp:label id="Blank" runat="server" width="15px"/>
+      <div id="check" runat="server" style="height:30px; width:255px;">
+            <label style="display:inline-block;width:120px;" >Important</label>
+            <input type="checkbox" id="checkbox" name="checkbox" style="width:20px"/>
+            <img src="photo/important.jpg" id="img" style="height:15px;visibility:hidden" />
+            <asp:HiddenField ID="checkboxHidden" runat="server" Value="0" ClientIDMode="Static" />
         </div>
     </div>
         <asp:Button ID="SendForApprovalButton" runat="server" CssClass="buttons" OnClick="SendForApprovalButtonClick" />         

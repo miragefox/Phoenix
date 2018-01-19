@@ -59,7 +59,7 @@ namespace Phoenix
                 {
                     int rowIndex = RequestGridView.Rows.Count + i + 1;
                     GridViewRow row = new GridViewRow(rowIndex, -1, DataControlRowType.EmptyDataRow, DataControlRowState.Normal);
-                    for (int j = 0; j < RequestGridView.Columns.Count-1; j++)
+                    for (int j = 0; j < RequestGridView.Columns.Count-3; j++)
                     {
                         TableCell cell = new TableCell();
                         cell.Text = "&nbsp;";
@@ -79,13 +79,17 @@ namespace Phoenix
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 string Id;
+                var Priority = e.Row.Cells[7].Text== "&nbsp;" ? 0 : Convert.ToInt32(e.Row.Cells[7].Text);
+                var DueDate = e.Row.Cells[8].Text;
                 Id = e.Row.Cells[6].Text;
                 if (Id != "&nbsp;")
                 {
-                    e.Row.Attributes.Add("onclick", "ItemOver(this,'" + Id + "')");
+                    e.Row.Attributes.Add("onclick", "ItemOver(this,'" + Id + "','" + Priority + "','" + DueDate + "')");
                 }
             }
             e.Row.Cells[6].Visible = false;
+            e.Row.Cells[7].Visible = false;
+            e.Row.Cells[8].Visible = false;
         }
 
         protected void AddNewButton_Click(object sender, EventArgs e)
@@ -130,8 +134,11 @@ namespace Phoenix
         protected void EditButton_Click(object sender, EventArgs e)
         {
             string id = HiddenId.Value;
+            string Priority = PriorityHidden.Value;
+            Session["Priority"] = Priority;
             Session["id"] = id;
             Session["BusinessCode"] = "";
+            Session["DueDate"] = string.Format("{0}/{1}/{2}", Convert.ToDateTime(DueDateHidden.Value).Month, Convert.ToDateTime(DueDateHidden.Value).Day, Convert.ToDateTime(DueDateHidden.Value).Year);
             Response.Redirect("request.aspx");
         }
 

@@ -45,7 +45,6 @@ namespace Phoenix
                 SendForApprovalButton.Text = "Send for Approval";
                 Request request = requestmodel.FindRequestById(requestId);
                 BindRequest(request);
-
             }
             else
             {
@@ -66,16 +65,8 @@ namespace Phoenix
             RequestId.Text = request.RequestId;
             RequestTitle.Text = request.RequestTitle;
             RequestDetails.Text = request.RequestDetail;
-            //DueDatePicker.Value = request.DueDate.ToString();
-            Priority.Checked = request.Priority == 1 ? true : false;
-            ImageDisplay();
         }
 
-        public void ImageDisplay()
-        {
-            ImportantImage.Visible = Priority.Checked == true ? true : false;
-            Blank.Visible = Priority.Checked == true ? false : true;
-        }
         protected void SendForApprovalButtonClick(object sender, EventArgs e)
         {
 
@@ -102,11 +93,6 @@ namespace Phoenix
                 }
                 Response.Redirect("index.aspx");
             }
-        }
-        protected void Priority_CheckedChanged(object sender, EventArgs e)
-        {
-            ImportantImage.Visible = Priority.Checked == true ? true : false;
-            Blank.Visible = Priority.Checked == true ? false : true;
         }
         protected void CancelButtonClick(object sender, EventArgs e)
         {
@@ -141,20 +127,7 @@ namespace Phoenix
         }
         public int GetPriority()
         {
-            int priority;
-            switch (Priority.Checked)
-            {
-                case true:
-                    priority = 1;
-                    break;
-                case false:
-                    priority = 0;
-                    break;
-                default:
-                    priority = 0;
-                    break;
-            }
-            return priority;
+            return Convert.ToInt32(checkboxHidden.Value);
         }
         public void ReturnFeedback(bool feedback)
         {

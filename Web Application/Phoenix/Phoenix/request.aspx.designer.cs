@@ -49,31 +49,22 @@ namespace Phoenix {
         protected global::System.Web.UI.WebControls.TextBox RequestDetails;
         
         /// <summary>
-        /// Priority control.
+        /// check control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox Priority;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl check;
         
         /// <summary>
-        /// ImportantImage control.
+        /// checkboxHidden control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImportantImage;
-        
-        /// <summary>
-        /// Blank control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Blank;
+        protected global::System.Web.UI.WebControls.HiddenField checkboxHidden;
         
         /// <summary>
         /// SendForApprovalButton control.
