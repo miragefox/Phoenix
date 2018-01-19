@@ -1,11 +1,7 @@
 ﻿
-using System.Data.SqlClient;
 using System;
-using System.Text;
 using Phoenix.PhoenixDataModel;
 using static Phoenix.RequestStatus;
-using static Phoenix.WebserviceHelper;
-using System.Collections.Generic;
 
 namespace Phoenix
 {

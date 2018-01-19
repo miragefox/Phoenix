@@ -21,13 +21,6 @@
             $('#img').css("visibility", "hidden");
             $('#checkboxHidden').val("0");
         }
-          //$('#DueDatePicker').click(function () {
-          //    document.getElementById("DueDatePicker").focus();
-          //});
-          //$('#DueDatePicker').change(function () {
-          //    document.getElementById("BodyContent_TextBoxDueDatePicker").value = $('#DueDatePicker').val();
-          //});
-
     });
     $(function () {
         $('#checkbox').click(function () {
@@ -95,7 +88,7 @@
             margin-left:50px;
     }
     .duedate {
-        width: 180px;
+        width: 200px;
         height: 20px;
     }   
 
@@ -120,10 +113,7 @@
         </div>
         <div runat="server" class="form">
            <asp:label text="Due Date" runat="server" CssClass="lable" />
-           <%--<asp:TextBox  id="DueDatePicker"  CssClass="duedate" runat="server" />--%>
-           <input type="text" id="DueDatePicker" class="duedate" />
-            <%--<input type="text" id="HiddenDueDatePicker" runat="server" onclick="showDateButton()" visible="false"/>--%>
-            <%--<asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>--%>
+           <input type="text" id="DueDatePicker" class="duedate" name="DueDate" />
            <asp:label runat="server" width="200px"/>
         </div>
       <div id="check" runat="server" style="height:30px; width:255px;">
