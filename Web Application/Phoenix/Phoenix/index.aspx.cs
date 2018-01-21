@@ -131,13 +131,17 @@ namespace Phoenix
 
         protected void EditButton_Click(object sender, EventArgs e)
         {
+            //string id = HiddenId.Value;
+            //string Priority = PriorityHidden.Value;
+            //Session["Priority"] = Priority;
+            //Session["id"] = id;
+            //Session["BusinessCode"] = "";
+            //Session["DueDate"] = string.Format("{0}/{1}/{2}", Convert.ToDateTime(DueDateHidden.Value).Month, Convert.ToDateTime(DueDateHidden.Value).Day, Convert.ToDateTime(DueDateHidden.Value).Year);
+            //Response.Redirect("request.aspx");
             string id = HiddenId.Value;
-            string Priority = PriorityHidden.Value;
-            Session["Priority"] = Priority;
             Session["id"] = id;
             Session["BusinessCode"] = "";
-            Session["DueDate"] = string.Format("{0}/{1}/{2}", Convert.ToDateTime(DueDateHidden.Value).Month, Convert.ToDateTime(DueDateHidden.Value).Day, Convert.ToDateTime(DueDateHidden.Value).Year);
-            Response.Redirect("request.aspx");
+            Response.Redirect("View.aspx");
         }
 
         protected void DetailsButton_Click(object sender, EventArgs e)

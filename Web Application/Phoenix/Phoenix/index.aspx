@@ -67,7 +67,7 @@
                     <asp:TemplateField ItemStyle-Width="120px" ItemStyle-HorizontalAlign="Left">
 
                         <ItemTemplate>
-                            <asp:LinkButton ID="EditButton" CssClass="LinkButton" runat="server" OnClick="EditButton_Click" Visible="False">Edit</asp:LinkButton>
+                            <asp:LinkButton ID="EditButton" CssClass="LinkButton" runat="server" OnClick="EditButton_Click" Visible="False">View</asp:LinkButton>
                             <asp:LinkButton ID="DetailsButton" CssClass="LinkButton" runat="server" OnClick="DetailsButton_Click" Visible="False">Action</asp:LinkButton>
                         </ItemTemplate>
 <ItemStyle Width="120px"></ItemStyle>

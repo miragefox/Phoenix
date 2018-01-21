@@ -70,6 +70,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="View.aspx" />
     <Content Include="handle.aspx" />
     <Content Include="index.aspx" />
     <Content Include="packages.config" />
@@ -90,6 +91,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="View.aspx.cs">
+      <DependentUpon>View.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="View.aspx.designer.cs">
+      <DependentUpon>View.aspx</DependentUpon>
+    </Compile>
     <Compile Include="handle.aspx.cs">
       <DependentUpon>handle.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
