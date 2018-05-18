@@ -70,12 +70,15 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Login.aspx" />
     <Content Include="View.aspx" />
     <Content Include="handle.aspx" />
     <Content Include="index.aspx" />
     <Content Include="packages.config" />
     <Content Include="MasterPage.Master" />
+    <Content Include="test.aspx" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="EventMasterPage.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -91,6 +94,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EventMasterPage.Master.cs">
+      <DependentUpon>EventMasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EventMasterPage.Master.designer.cs">
+      <DependentUpon>EventMasterPage.Master</DependentUpon>
+    </Compile>
     <Compile Include="View.aspx.cs">
       <DependentUpon>View.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -130,6 +147,13 @@
       <DependentUpon>request.aspx</DependentUpon>
     </Compile>
     <Compile Include="RequestStatus.cs" />
+    <Compile Include="test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebserviceHelper.cs" />
   </ItemGroup>
   <PropertyGroup>
